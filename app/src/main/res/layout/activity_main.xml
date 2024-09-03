@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/freepiklandpage"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_paw_app_logo"
+        android:contentDescription="@string/app_logo" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/GetStartedBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/get_started"
+            android:textColor="#FFA500"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppinssemibold"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/MainTxtBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/GetStartedBtn"
+            android:layout_marginTop="16dp"
+            android:text="@string/app_description"
+            android:textColor="#FFA500"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppinsmedium"
+            android:textAlignment="center" />
+    </RelativeLayout>
+
+</LinearLayout>

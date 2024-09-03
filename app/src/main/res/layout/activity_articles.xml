@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F1F0"
+    tools:context=".ArticlesActivity">
+
+    <!-- Heading TextView -->
+    <TextView
+        android:id="@+id/articlesHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="16dp"
+        android:text="Lorem Ipsum"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- ScrollView to hold article content -->
+    <ScrollView
+        android:id="@+id/articlesScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/articlesHeading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
+
+        <!-- LinearLayout for image and article content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ImageView for article heading image -->
+            <ImageView
+                android:id="@+id/image_heading"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@drawable/marshmaloi"
+                app:shapeAppearanceOverlay="@style/RoundCorner"/>
+
+            <!-- TextView for article content -->
+            <TextView
+                android:id="@+id/articles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Article content goes here..."
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:justificationMode="inter_word"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

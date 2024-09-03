@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ReportDetailsFragment">
+
+    <TextView
+        android:id="@+id/reportTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report Type"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reportTypeTextView"
+        android:text="Description"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/reporterEmailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/descriptionTextView"
+        android:text="Reporter Email"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/reportImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reporterEmailTextView"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/placeholder_image" />
+
+</RelativeLayout>
