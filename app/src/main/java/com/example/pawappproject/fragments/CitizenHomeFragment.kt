@@ -53,12 +53,6 @@ class CitizenHomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        shopCard.setOnClickListener {
-            showToast("Pet Shop Card Clicked.")
-            val intent = Intent(activity, PetStoreActivity::class.java)
-            startActivity(intent)
-        }
-
         return view
     }
 
