@@ -128,27 +128,27 @@
 
                 <!--Notifications-->
                 <RelativeLayout
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
 
                     <ImageView
                         android:id="@+id/notifBell"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:background="@drawable/round_back_notifications"
                         android:padding="12dp"
-                        android:src="@drawable/notification_bell"
-                        android:background="@drawable/round_back_notifications"/>
+                        android:src="@drawable/notification_bell" />
 
                     <TextView
-                        android:layout_marginStart="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Notifications"
-                        android:textColor="@color/white"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/notifBell"
                         android:fontFamily="@font/poppinssemibold"
-                        android:layout_toEndOf="@+id/notifBell"/>
+                        android:text="Notifications"
+                        android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:switchMinWidth="50dp"
-                        android:theme="@style/nightModeSwitch"/>
+                        android:theme="@style/nightModeSwitch" />
 
                 </RelativeLayout>
 
@@ -235,6 +235,50 @@
 
                 </RelativeLayout>
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/PremiumSubBtn"
+                android:background="@drawable/round_back_white10_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/PremiumImg"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="12dp"
+                        android:src="@drawable/premium"
+                        android:background="@drawable/round_back_notifications"/>
+
+                    <TextView
+                        android:layout_marginStart="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Premium"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/poppinssemibold"
+                        android:layout_toEndOf="@+id/PremiumImg"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/next"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
