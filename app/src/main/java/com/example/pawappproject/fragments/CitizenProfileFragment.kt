@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.pawappproject.CitizenSubscriptionActivity
 import com.example.pawappproject.DialogActivity
 import com.example.pawappproject.LoginActivity
 import com.example.pawappproject.MainActivity
@@ -46,6 +48,13 @@ class CitizenProfileFragment : Fragment() {
         val aboutUsBtn: LinearLayout = view.findViewById(R.id.Aboutbtn)
         aboutUsBtn.setOnClickListener {
             val intent = Intent(requireActivity(), DialogActivity::class.java)
+            Toast.makeText(activity, "Proceeding..", Toast.LENGTH_SHORT).show()
+            startActivity(intent)
+        }
+
+        val CitizenPremiumSubBtn: LinearLayout = view.findViewById(R.id.PremiumSubBtn)
+        CitizenPremiumSubBtn.setOnClickListener {
+            val intent = Intent(requireActivity(), CitizenSubscriptionActivity::class.java)
             Toast.makeText(activity, "Proceeding..", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         }
