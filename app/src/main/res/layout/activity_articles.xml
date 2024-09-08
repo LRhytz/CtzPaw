@@ -42,16 +42,17 @@
             android:orientation="vertical">
 
             <!-- ImageView for article heading image -->
+
+            <!-- TextView for article content -->
             <ImageView
                 android:id="@+id/image_heading"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:src="@drawable/marshmaloi"
-                app:shapeAppearanceOverlay="@style/RoundCorner"/>
+                app:shapeAppearanceOverlay="@style/RoundCorner" />
 
-            <!-- TextView for article content -->
             <TextView
                 android:id="@+id/articles"
                 android:layout_width="match_parent"
