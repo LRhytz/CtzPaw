@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Organization Name"
+        android:enabled="false" />
+
+    <EditText
+        android:id="@+id/editTextPurpose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Purpose/Details"
+        android:enabled="false" />
+
+    <EditText
+        android:id="@+id/editTextGcashName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="GCash Name"
+        android:enabled="false" />
+
+    <EditText
+        android:id="@+id/editTextGcashNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="GCash Number"
+        android:enabled="false" />
+
+    <EditText
+        android:id="@+id/editTextDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Additional Details"
+        android:minHeight="100dp"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/buttonEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:visibility="gone" />
+
+</LinearLayout>

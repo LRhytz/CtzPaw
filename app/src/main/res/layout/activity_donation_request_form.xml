@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Organization Name -->
+    <EditText
+        android:id="@+id/editTextOrganizationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Organization Name" />
+
+    <!-- Purpose -->
+    <EditText
+        android:id="@+id/editTextPurpose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Purpose" />
+
+    <!-- GCash Name -->
+    <EditText
+        android:id="@+id/editTextGcashName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="GCash Name" />
+
+    <!-- GCash Number -->
+    <EditText
+        android:id="@+id/editTextGcashNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="GCash Number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:hint="Additional Details"
+        android:inputType="textMultiLine"
+        android:minHeight="100dp" />
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/buttonSubmitRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Request" />
+
+</LinearLayout>
