@@ -10,11 +10,16 @@ import com.example.pawappproject.models.Report
 
 class ViewReportsAdapter(
     private val reportsRecyclerView: ArrayList<Report>,
-    private val listener: OnDeleteButtonClickListener
+    private val deleteListener: OnDeleteButtonClickListener,
+    private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<ViewReportsAdapter.MyViewHolder>() {
 
     interface OnDeleteButtonClickListener {
         fun onDeleteButtonClick(reportId: String)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(reportId: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -32,7 +37,11 @@ class ViewReportsAdapter(
         holder.reporterEmail.text = currentItem.reportUserEmail
 
         holder.btnDelete.setOnClickListener {
-            listener.onDeleteButtonClick(currentItem.reportId)
+            deleteListener.onDeleteButtonClick(currentItem.reportId)
+        }
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(currentItem.reportId)
         }
     }
 
