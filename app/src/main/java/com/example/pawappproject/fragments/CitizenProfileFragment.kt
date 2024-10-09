@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pawappproject.CitizenSubscriptionActivity
 import com.example.pawappproject.DialogActivity
+import com.example.pawappproject.EditProfileActivity
 import com.example.pawappproject.LoginActivity
 import com.example.pawappproject.MainActivity
 import com.example.pawappproject.R
@@ -58,6 +59,13 @@ class CitizenProfileFragment : Fragment() {
             Toast.makeText(activity, "Proceeding..", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         }
+
+        val editProfileButton: Button = view.findViewById(R.id.editProfileButton)
+        editProfileButton.setOnClickListener {
+            val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
 
         return view
     }
