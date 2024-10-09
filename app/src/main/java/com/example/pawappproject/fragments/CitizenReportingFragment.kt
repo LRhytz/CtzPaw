@@ -44,6 +44,7 @@ class CitizenReportingFragment : Fragment() {
     private lateinit var submitButton: Button
     private lateinit var viewReportsButton: Button
     private lateinit var addMediasContainers: LinearLayout
+    private lateinit var imageViews: List<ImageView>
 
     // Image handling
     private val imageUris = mutableListOf<Uri>()
@@ -111,13 +112,14 @@ class CitizenReportingFragment : Fragment() {
         // Initialize AutoCompleteTextView
         initAutoCompleteTextView()
 
-        // Set click listeners for image views
-        for (i in 0 until MAX_IMAGES) {
-            val imageView = addMediasContainers.getChildAt(i) as ImageView
+        // Initialize ImageViews and set click listeners
+        imageViews = List(MAX_IMAGES) { index ->
+            val imageView = addMediasContainers.getChildAt(index) as ImageView
             imageView.setOnClickListener {
                 currentImageView = imageView
                 showImagePickerDialog()
             }
+            imageView
         }
 
         // Set click listeners for buttons
@@ -359,6 +361,14 @@ class CitizenReportingFragment : Fragment() {
                                     "Report submitted successfully",
                                     Toast.LENGTH_SHORT
                                 ).show()
+
+                                // Clear the fields after successful submission
+                                autoCompleteTextView.text.clear()
+                                reportDescription.text.clear()
+                                imageUris.clear()
+                                imageViews.forEach { imageView ->
+                                    imageView.setImageURI(null) // Clear image content
+                                }
                             } else {
                                 Toast.makeText(
                                     requireContext(),
@@ -378,6 +388,7 @@ class CitizenReportingFragment : Fragment() {
             }
         }
     }
+
 
     private fun onViewReportsButtonClick() {
         val intent = Intent(requireContext(), ViewReportsActivity::class.java)

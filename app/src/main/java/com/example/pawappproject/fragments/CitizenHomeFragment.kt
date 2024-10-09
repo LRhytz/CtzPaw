@@ -36,7 +36,6 @@ class CitizenHomeFragment : Fragment() {
         // Find all the cards
         val adoptionCard: CardView = view.findViewById(R.id.adoptionCard)
         val educationCard: CardView = view.findViewById(R.id.educationCard)
-        val shopCard: CardView = view.findViewById(R.id.shopCard)
 
         // Set click listeners for each card
         adoptionCard.setOnClickListener {
