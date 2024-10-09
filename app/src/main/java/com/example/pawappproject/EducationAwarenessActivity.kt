@@ -2,6 +2,7 @@ package com.example.pawappproject
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,30 +17,26 @@ class EducationAwarenessActivity : AppCompatActivity() {
     private lateinit var filteredList: ArrayList<Articles>
     private lateinit var adapter: ArticleAdapter
     private lateinit var searchView: SearchView
-    private lateinit var database: DatabaseReference  // Firebase Database Reference
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_education_awareness)
 
-        // Initialize Firebase Database reference
         database = FirebaseDatabase.getInstance().getReference("articles")
 
         newRecyclerView = findViewById(R.id.awarenessRecyclerView)
         searchView = findViewById(R.id.searchView)
 
-        // Set up RecyclerView layout manager
         newRecyclerView.layoutManager = LinearLayoutManager(this)
         newRecyclerView.setHasFixedSize(true)
 
         newArrayList = arrayListOf()
         filteredList = arrayListOf()
 
-        // Initialize adapter right away with an empty list to avoid uninitialized access
         adapter = ArticleAdapter(filteredList)
         newRecyclerView.adapter = adapter
 
-        // Set the click listener after initializing the adapter
         adapter.setOnItemClickListener(object : ArticleAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
                 val intent = Intent(this@EducationAwarenessActivity, ArticlesActivity::class.java)
@@ -50,9 +47,8 @@ class EducationAwarenessActivity : AppCompatActivity() {
             }
         })
 
-        fetchArticlesFromFirebase()  // Fetch articles from Firebase
+        fetchArticlesFromFirebase()
 
-        // Setup search functionality
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -63,6 +59,12 @@ class EducationAwarenessActivity : AppCompatActivity() {
                 return true
             }
         })
+
+        val addButton: Button = findViewById(R.id.addReadingMaterialButton)
+        addButton.setOnClickListener {
+            val intent = Intent(this, AddReadingMaterialActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun fetchArticlesFromFirebase() {
@@ -77,11 +79,8 @@ class EducationAwarenessActivity : AppCompatActivity() {
                     }
                 }
 
-                // Copy all articles to the filtered list initially
                 filteredList.clear()
                 filteredList.addAll(newArrayList)
-
-                // Notify adapter of data changes
                 adapter.notifyDataSetChanged()
             }
 
@@ -91,26 +90,20 @@ class EducationAwarenessActivity : AppCompatActivity() {
         })
     }
 
-    // Filter method for search functionality
     private fun filter(text: String) {
-        // Ensure that the adapter is initialized before filtering
-        if (::adapter.isInitialized) {
-            filteredList.clear()
+        filteredList.clear()
 
-            if (text.isEmpty()) {
-                filteredList.addAll(newArrayList)
-            } else {
-                val query = text.lowercase()
-
-                for (article in newArrayList) {
-                    if (article.title?.lowercase()?.contains(query) == true) {
-                        filteredList.add(article)
-                    }
+        if (text.isEmpty()) {
+            filteredList.addAll(newArrayList)
+        } else {
+            val query = text.lowercase()
+            for (article in newArrayList) {
+                if (article.title.lowercase().contains(query)) {
+                    filteredList.add(article)
                 }
             }
-
-            // Notify adapter of the data changes
-            adapter.notifyDataSetChanged()
         }
+
+        adapter.notifyDataSetChanged()
     }
 }
