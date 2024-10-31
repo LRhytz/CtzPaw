@@ -19,7 +19,7 @@ class ArticlesActivity : AppCompatActivity() {
         // Fetch data from the intent
         val bundle: Bundle? = intent.extras
         val heading = bundle?.getString("title")
-        val imageUrl = bundle?.getString("ImageId") // Should be a URL, not an Int
+        val imageUrl = bundle?.getString("ImageId") // Should be a URL
         val articles = bundle?.getString("articles")
 
         // Set the text views
@@ -27,9 +27,10 @@ class ArticlesActivity : AppCompatActivity() {
         mainArticles.text = articles
 
         // Load the image using Glide
-        if (imageUrl != null) {
+        if (imageUrl != null && imageUrl.isNotEmpty()) {
             Glide.with(this)
                 .load(imageUrl) // Load from URL
+                .placeholder(R.drawable.placeholder_image) // Optional placeholder
                 .into(imageArticle) // Set the image into ImageView
         }
     }

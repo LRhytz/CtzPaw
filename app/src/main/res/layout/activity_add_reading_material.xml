@@ -2,9 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F0F1F0"
-    tools:context=".EducationAwarenessActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/topside"
@@ -40,37 +38,60 @@
             android:contentDescription="@string/notification_bell" />
     </LinearLayout>
 
-    <!-- Add the SearchView here -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <EditText
+        android:id="@+id/editTextTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:queryHint="Search articles"
+        android:hint="Title"
+        android:layout_margin="16dp"
         app:layout_constraintTop_toBottomOf="@id/topside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_default="spread"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/awarenessRecyclerView"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/searchView"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/placeholder_image"
+        app:layout_constraintTop_toBottomOf="@id/editTextTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/addReadingMaterialButton"
-        tools:listitem="@layout/list_item_awareness"/>
+        app:layout_constraintBottom_toTopOf="@id/editTextContent"/>
 
-    <!-- Add Reading Material Button -->
     <Button
-        android:id="@+id/addReadingMaterialButton"
+        android:id="@+id/buttonChooseImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Image"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/editTextContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="Type here..."
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonChooseImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonSave"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <Button
+        android:id="@+id/buttonSave"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add Reading Material"
-        android:layout_margin="16dp"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_default="spread"/>
+        android:layout_margin="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
