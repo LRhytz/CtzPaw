@@ -19,12 +19,13 @@
         android:layout_weight="1"
         android:gravity="bottom">
 
+        <!-- Login as Organization Button -->
         <Button
-            android:id="@+id/GetStartedBtn"
+            android:id="@+id/LoginOrganizationBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:text="@string/get_started"
+            android:text="Login as Organization"
             android:textColor="#FFA500"
             android:textSize="18sp"
             android:fontFamily="@font/poppinssemibold"
@@ -32,13 +33,32 @@
             android:paddingEnd="24dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Login as Citizen Button -->
+        <Button
+            android:id="@+id/LoginCitizenBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="Login as Citizen"
+            android:textColor="#FFA500"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppinssemibold"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/LoginOrganizationBtn"
+            android:layout_marginTop="12dp" />
 
         <TextView
             android:id="@+id/MainTxtBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/GetStartedBtn"
+            android:layout_below="@id/LoginCitizenBtn"
             android:layout_marginTop="16dp"
             android:text="@string/app_description"
             android:textColor="#FFA500"

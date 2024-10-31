@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
 
         // Check if the user is already logged in
-        // User is logged in, redirect to DashboardActivity or HomeActivity
         if (isLoggedIn()) {
             val intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
@@ -31,8 +30,16 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val getStartedButton = findViewById<Button>(R.id.GetStartedBtn)
-        getStartedButton.setOnClickListener {
+        // Setup "Login as Organization" button
+        val loginOrganizationButton = findViewById<Button>(R.id.LoginOrganizationBtn)
+        loginOrganizationButton.setOnClickListener {
+            val intent = Intent(this, OrganizationLoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Setup "Login as Citizen" button
+        val loginCitizenButton = findViewById<Button>(R.id.LoginCitizenBtn)
+        loginCitizenButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
@@ -54,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         return supportFragmentManager.findFragmentById(R.id.fl_wrapper)
     }
 
-    // Check if user is logged in by getting the saved email from SharedPreferences
     private fun isLoggedIn(): Boolean {
         val userEmail = sharedPreferences.getString("userEmail", null)
         return userEmail != null && firebaseAuth.currentUser != null
