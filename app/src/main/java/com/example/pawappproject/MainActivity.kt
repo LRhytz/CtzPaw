@@ -4,9 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import androidx.fragment.app.Fragment
-import com.example.pawappproject.fragments.ReportDetailsFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -16,49 +13,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         firebaseAuth = FirebaseAuth.getInstance()
         sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
 
         // Check if the user is already logged in
         if (isLoggedIn()) {
+            // Redirect to DashboardActivity if logged in
             val intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
             finish()
             return
         }
 
-        setContentView(R.layout.activity_main)
-
-        // Setup "Login as Organization" button
-        val loginOrganizationButton = findViewById<Button>(R.id.LoginOrganizationBtn)
-        loginOrganizationButton.setOnClickListener {
-            val intent = Intent(this, OrganizationLoginActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Setup "Login as Citizen" button
-        val loginCitizenButton = findViewById<Button>(R.id.LoginCitizenBtn)
-        loginCitizenButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-    }
-
-    override fun onBackPressed() {
-        val currentFragment = getCurrentFragment()
-
-        if (currentFragment is ReportDetailsFragment) {
-            if (!currentFragment.onBackPressed()) {
-                super.onBackPressed()
-            }
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    private fun getCurrentFragment(): Fragment? {
-        return supportFragmentManager.findFragmentById(R.id.fl_wrapper)
+        // Set up login buttons and any other UI for initial login (not shown here)
     }
 
     private fun isLoggedIn(): Boolean {

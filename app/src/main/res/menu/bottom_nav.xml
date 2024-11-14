@@ -4,6 +4,6 @@
     <item android:title="Home"/>
     <item android:title="Report"/>
     <item android:title="Donate"/>
-    <item android:title="Proifle"/>
+    <item android:title="Profile"/>
 
 </menu>

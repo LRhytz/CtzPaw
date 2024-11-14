@@ -146,12 +146,20 @@
                     android:scaleType="centerCrop" />
             </LinearLayout>
 
+            <!-- MapView for selecting location -->
+            <org.osmdroid.views.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/addMediasContainers"
+                android:layout_margin="16dp" />
+
             <!-- EditText for adding description -->
             <LinearLayout
                 android:id="@+id/reportDescriptionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/addMediasContainers"
+                android:layout_below="@id/mapView"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="5dp"
                 android:orientation="vertical">

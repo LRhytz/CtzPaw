@@ -5,8 +5,10 @@ data class Report(
     var reportType: String = "",
     var reportDescription: String = "",
     val imageUrls: List<String> = listOf(),
-    var reportUserEmail: String? = null
+    var reportUserEmail: String? = null,
+    var latitude: Double? = null,
+    var longitude: Double? = null
 ) {
     // For no-argument constructor required by Firebase
-    constructor() : this("", "", "", listOf(), null)
+    constructor() : this("", "", "", listOf(), null, null, null)
 }

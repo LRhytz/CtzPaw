@@ -13,10 +13,16 @@
         android:src="@drawable/ic_paw_app_logo"
         android:contentDescription="@string/app_logo" />
 
-    <RelativeLayout
+    <!-- FrameLayout to host fragments -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="bottom">
 
         <!-- Login as Organization Button -->

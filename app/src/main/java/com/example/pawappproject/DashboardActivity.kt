@@ -15,29 +15,25 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        val citizenHomeFragment = CitizenHomeFragment()
-        val citizenReportingFragment = CitizenReportingFragment()
-        val citizenDonationFragment = CitizenDonationFragment()
-        val citizenProfileFragment = CitizenProfileFragment()
-
-        makeCurrentFragment(citizenHomeFragment)
+        // Load CitizenHomeFragment as the initial fragment
+        makeCurrentFragment(CitizenHomeFragment())
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.homeBtn -> makeCurrentFragment(citizenHomeFragment)
-                R.id.reportBtn -> makeCurrentFragment(citizenReportingFragment)
-                R.id.donationsBtn -> makeCurrentFragment(citizenDonationFragment)
-                R.id.profilBtn -> makeCurrentFragment(citizenProfileFragment)
+                R.id.homeBtn -> makeCurrentFragment(CitizenHomeFragment())
+                R.id.reportBtn -> makeCurrentFragment(CitizenReportingFragment())
+                R.id.donationsBtn -> makeCurrentFragment(CitizenDonationFragment())
+                R.id.profilBtn -> makeCurrentFragment(CitizenProfileFragment())
             }
             true
         }
     }
 
-    private fun  makeCurrentFragment(fragment: Fragment) =
+    private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace (R.id.fl_wrapper, fragment)
+            replace(R.id.fl_wrapper, fragment)
             commit()
         }
 }

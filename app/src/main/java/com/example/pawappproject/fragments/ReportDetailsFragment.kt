@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.pawappproject.R
 import com.example.pawappproject.models.Report
 import com.google.firebase.database.*
@@ -47,12 +48,12 @@ class ReportDetailsFragment : Fragment() {
                     report?.let {
                         displayReportDetails(it)
                     }
+                } else {
+                    Toast.makeText(context, "Report not found", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle database error
-                // For example:
                 Toast.makeText(context, "Failed to load report details", Toast.LENGTH_SHORT).show()
             }
         })
@@ -65,16 +66,21 @@ class ReportDetailsFragment : Fragment() {
         descriptionTextView.text = report.reportDescription
         reporterEmailTextView.text = report.reportUserEmail
 
-        // Load image from Firebase storage (if you have stored images)
-        // For example:
-        // Picasso.get().load(report.imageUrl).into(imageView)
+        // Load the image if the report has an image URL
+        if (!report.imageUrls.isNullOrEmpty()) {
+            val imageUrl = report.imageUrls[0] // Assuming the first image is the main image to display
+            Glide.with(this)
+                .load(imageUrl)
+                .placeholder(R.drawable.placeholder_image) // Placeholder image
+                .error(R.drawable.republic) // Error image in case of load failure
+                .into(imageView)
+        } else {
+            // Set a placeholder or hide the ImageView if no image is available
+            imageView.setImageResource(R.drawable.placeholder_image)
+        }
     }
 
     fun onBackPressed(): Boolean {
-        // Handle back press logic here
-        // For example, if you want to consume the back press:
-        // return true
-        // If you want to let the activity handle the back press:
         return false
     }
 }
