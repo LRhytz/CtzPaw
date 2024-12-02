@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.pawappproject.R
-import com.example.pawappproject.models.Report
+import com.example.pawappproject.Report
 import com.google.firebase.database.*
 
 class ReportDetailsFragment : Fragment() {
@@ -66,16 +66,14 @@ class ReportDetailsFragment : Fragment() {
         descriptionTextView.text = report.reportDescription
         reporterEmailTextView.text = report.reportUserEmail
 
-        // Load the image if the report has an image URL
         if (!report.imageUrls.isNullOrEmpty()) {
-            val imageUrl = report.imageUrls[0] // Assuming the first image is the main image to display
+            val imageUrl = report.imageUrls[0]
             Glide.with(this)
                 .load(imageUrl)
-                .placeholder(R.drawable.placeholder_image) // Placeholder image
-                .error(R.drawable.republic) // Error image in case of load failure
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.ic_image_load_failed)
                 .into(imageView)
         } else {
-            // Set a placeholder or hide the ImageView if no image is available
             imageView.setImageResource(R.drawable.placeholder_image)
         }
     }

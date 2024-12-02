@@ -39,12 +39,6 @@
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".DonationDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DonationRequestFormActivity"
-            android:exported="false" />
-        <activity
             android:name=".CitizenSubscriptionActivity"
             android:exported="false" />
         <activity
