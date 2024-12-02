@@ -1,4 +1,4 @@
-package com.example.pawappproject
+package com.example.pawappproject.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pawappproject.fragments.ReportDetailsFragment
-import com.example.pawappproject.models.Report
+import com.example.pawappproject.DeleteDialogFragment
+import com.example.pawappproject.R
+import com.example.pawappproject.ViewReportsAdapter
+import com.example.pawappproject.Report
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*

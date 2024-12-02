@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -25,8 +26,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.pawappproject.R
-import com.example.pawappproject.ViewReportsFragment
-import com.example.pawappproject.models.Report
+import com.example.pawappproject.Report
+import com.example.pawappproject.ReportingUtils
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -49,10 +50,17 @@ class CitizenReportingFragment : Fragment() {
     private lateinit var autoCompleteTextView: AutoCompleteTextView
     private lateinit var reportDescription: EditText
     private lateinit var submitButton: Button
-    private lateinit var viewReportsButton: Button
+    private lateinit var viewReportHistoryButton: ImageButton
     private lateinit var addMediasContainers: LinearLayout
     private lateinit var imageViews: List<ImageView>
     private lateinit var mapView: MapView
+
+    private lateinit var videoPreview: VideoView
+    private lateinit var selectVideoButton: Button
+    private var selectedVideoUri: Uri? = null
+    private val MAX_VIDEO_SIZE_MB = 30
+    private val MIN_DURATION_SECONDS = 3
+    private val MAX_DURATION_SECONDS = 60
 
     // Location
     private var selectedLocation: GeoPoint? = null
@@ -124,12 +132,12 @@ class CitizenReportingFragment : Fragment() {
         autoCompleteTextView = view.findViewById(R.id.autoCompleteTextView)
         reportDescription = view.findViewById(R.id.reportDescription)
         submitButton = view.findViewById(R.id.submitButton)
-        viewReportsButton = view.findViewById(R.id.viewReportsButton)
+        viewReportHistoryButton = view.findViewById(R.id.viewReportHistoryButton)
         addMediasContainers = view.findViewById(R.id.addMediasContainers)
         mapView = view.findViewById(R.id.mapView)
 
         // Initialize AutoCompleteTextView
-        initAutoCompleteTextView()
+        ReportingUtils.initAutoCompleteTextView(requireContext(), autoCompleteTextView)
 
         // Initialize ImageViews and set click listeners
         imageViews = List(MAX_IMAGES) { index ->
@@ -141,6 +149,15 @@ class CitizenReportingFragment : Fragment() {
             imageView
         }
 
+        // Initialize video views
+        videoPreview = view.findViewById(R.id.videoPreview)
+        selectVideoButton = view.findViewById(R.id.selectVideoButton)
+
+        // Handle video selection
+        selectVideoButton.setOnClickListener {
+            pickVideo()
+        }
+
         // Set up map
         setupMap()
 
@@ -149,13 +166,90 @@ class CitizenReportingFragment : Fragment() {
             onSubmitButtonClick()
         }
 
-        viewReportsButton.setOnClickListener {
+        viewReportHistoryButton.setOnClickListener {
             onViewReportsButtonClick()
         }
 
         return view
     }
 
+    // Pick video from gallery or record a new one
+    private fun pickVideo() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+        videoPickerLauncher.launch(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                REQUEST_VIDEO_PICKER -> {
+                    selectedVideoUri = data?.data
+                    selectedVideoUri?.let { uri ->
+                        videoPreview.setVideoURI(uri) // Set the video URI to the VideoView
+                        videoPreview.start() // Start playing the video
+                    }
+                }
+            }
+        }
+    }
+
+    // Register video picker result
+    private val videoPickerLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val videoUri = result.data?.data
+                if (videoUri != null && validateVideo(videoUri)) {
+                    selectedVideoUri = videoUri
+                    videoPreview.setVideoURI(videoUri)
+                    videoPreview.start()
+                } else {
+                    Toast.makeText(requireContext(), "Invalid video selected", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+    // Validate video constraints
+    private fun validateVideo(videoUri: Uri): Boolean {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(requireContext(), videoUri)
+
+        // Get video duration
+        val durationMillis =
+            retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?.toLong() ?: 0
+        val durationSeconds = durationMillis / 1000
+
+        // Get video resolution
+        val videoWidth =
+            retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)?.toInt() ?: 0
+        val videoHeight =
+            retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)?.toInt() ?: 0
+
+        // Get file size
+        val fileSizeBytes = requireContext().contentResolver.openFileDescriptor(videoUri, "r")?.statSize
+        val fileSizeMB = (fileSizeBytes ?: 0) / (1024 * 1024)
+
+        retriever.release()
+
+        // Check constraints
+        return when {
+            fileSizeMB > MAX_VIDEO_SIZE_MB -> {
+                Toast.makeText(requireContext(), "Video size exceeds 30MB", Toast.LENGTH_SHORT).show()
+                false
+            }
+            durationSeconds < MIN_DURATION_SECONDS || durationSeconds > MAX_DURATION_SECONDS -> {
+                Toast.makeText(requireContext(), "Video duration must be between 10-60 seconds", Toast.LENGTH_SHORT).show()
+                false
+            }
+            videoWidth > 1280 || videoHeight > 1280 -> {
+                Toast.makeText(requireContext(), "Video resolution exceeds 1280x1280", Toast.LENGTH_SHORT).show()
+                false
+            }
+            else -> true
+        }
+    }
+
+    // Setup Maps
     private fun setupMap() {
         mapView.setMultiTouchControls(true)
         val startPoint = GeoPoint(14.5995, 120.9842) // Example starting location (Manila)
@@ -218,28 +312,6 @@ class CitizenReportingFragment : Fragment() {
                 LOCATION_PERMISSION_REQUEST_CODE
             )
         }
-    }
-
-    private fun initAutoCompleteTextView() {
-        val items = arrayOf(
-            "Animal Abuse/Neglect",
-            "Stray Animal Sighting",
-            "Injured Animal",
-            "Abandoned Animal",
-            "Lost/Found Pet",
-            "Animal Rescue Request",
-            "Animal Cruelty Suspected",
-            "Animal Emergency",
-            "Trap-Neuter-Return (TNR) Request",
-            "Animal Shelter Support Needed"
-        )
-
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            items
-        )
-        autoCompleteTextView.setAdapter(adapter)
     }
 
     private fun showImagePickerDialog() {
@@ -425,6 +497,7 @@ class CitizenReportingFragment : Fragment() {
             return
         }
 
+
         // Generate a custom ID for the report
         val reportTimestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val reportId = "report_$reportTimestamp"
@@ -448,22 +521,43 @@ class CitizenReportingFragment : Fragment() {
                             latitude = selectedLocation?.latitude,
                             longitude = selectedLocation?.longitude
                         )
-                        database.child(reportId).setValue(report).addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Toast.makeText(requireContext(), "Report submitted successfully", Toast.LENGTH_SHORT).show()
-                                // Clear fields
-                                autoCompleteTextView.text.clear()
-                                reportDescription.text.clear()
-                                imageUris.clear()
-                                imageViews.forEach { imageView -> imageView.setImageURI(null) }
-                            } else {
-                                Toast.makeText(requireContext(), "Failed to submit report", Toast.LENGTH_SHORT).show()
+
+                        // Check if there's a video to upload
+                        if (selectedVideoUri != null) {
+                            val videoRef = storage.child("reports").child(reportId).child("report_video.mp4")
+                            videoRef.putFile(selectedVideoUri!!).addOnSuccessListener {
+                                videoRef.downloadUrl.addOnSuccessListener { videoUrl ->
+                                    // Add video URL to the report and save it to the database
+                                    report.videoUrl = videoUrl.toString()
+                                    saveReportToDatabase(report)
+                                }
+                            }.addOnFailureListener {
+                                Toast.makeText(requireContext(), "Failed to upload video", Toast.LENGTH_SHORT).show()
                             }
+                        } else {
+                            // No video, save the report directly
+                            saveReportToDatabase(report)
                         }
                     }
                 }
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to upload image", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Function to save the report to the Firebase Realtime Database
+    private fun saveReportToDatabase(report: Report) {
+        database.child(report.reportId).setValue(report).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(requireContext(), "Report submitted successfully", Toast.LENGTH_SHORT).show()
+                // Clear fields
+                autoCompleteTextView.text.clear()
+                reportDescription.text.clear()
+                imageUris.clear()
+                imageViews.forEach { imageView -> imageView.setImageURI(null) }
+            } else {
+                Toast.makeText(requireContext(), "Failed to submit report", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -477,6 +571,7 @@ class CitizenReportingFragment : Fragment() {
     }
 
     companion object {
+        private const val REQUEST_VIDEO_PICKER = 1001
         private const val REQUEST_READ_STORAGE_PERMISSION = 1
         private const val REQUEST_CAMERA_PERMISSION = 2
         private const val MAX_IMAGES = 5
