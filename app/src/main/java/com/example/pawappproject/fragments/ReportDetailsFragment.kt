@@ -25,6 +25,7 @@ class ReportDetailsFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var reportId: String
 
+    private lateinit var statusTextView: TextView
     private lateinit var reportTypeTextView: TextView
     private lateinit var descriptionTextView: TextView
     private lateinit var reporterEmailTextView: TextView
@@ -42,6 +43,7 @@ class ReportDetailsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_report_details, container, false)
 
         // Initialize views
+        statusTextView = view.findViewById(R.id.statusTextView)
         reportTypeTextView = view.findViewById(R.id.reportTypeTextView)
         descriptionTextView = view.findViewById(R.id.descriptionTextView)
         reporterEmailTextView = view.findViewById(R.id.reporterEmailTextView)
@@ -89,6 +91,7 @@ class ReportDetailsFragment : Fragment() {
     }
 
     private fun displayReportDetails(report: Report) {
+        statusTextView.text = "Status: ${report.status}"
         reportTypeTextView.text = "Report Type: ${report.reportType}"
         descriptionTextView.text = "Details: ${report.reportDescription}"
         reporterEmailTextView.text = "Reporter Email: ${report.reportUserEmail}"
