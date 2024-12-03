@@ -9,7 +9,8 @@ data class Report(
     var latitude: Double? = null,
     var longitude: Double? = null,
     var videoUrl: String? = null,
+    var status: String = "Submitted"
 ) {
-    // For no-argument constructor required by Firebase
-    constructor() : this("", "", "", listOf(), null, null, null, null)
+    constructor() : this("", "", "", listOf(), null, null, null, null, "Submitted")
 }
+
