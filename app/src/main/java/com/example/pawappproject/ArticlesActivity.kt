@@ -1,9 +1,9 @@
 package com.example.pawappproject
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 
 class ArticlesActivity : AppCompatActivity() {
@@ -17,21 +17,18 @@ class ArticlesActivity : AppCompatActivity() {
         val imageArticle: ImageView = findViewById(R.id.image_heading)
 
         // Fetch data from the intent
-        val bundle: Bundle? = intent.extras
-        val heading = bundle?.getString("title")
-        val imageUrl = bundle?.getString("ImageId") // Should be a URL
-        val articles = bundle?.getString("articles")
+        val heading = intent.getStringExtra("title") ?: "No Title"
+        val imageUrl = intent.getStringExtra("ImageId") ?: "" // URL might be empty or null
+        val articles = intent.getStringExtra("articles") ?: "No Content Available"
 
         // Set the text views
         headingArticles.text = heading
         mainArticles.text = articles
 
         // Load the image using Glide
-        if (imageUrl != null && imageUrl.isNotEmpty()) {
-            Glide.with(this)
-                .load(imageUrl) // Load from URL
-                .placeholder(R.drawable.placeholder_image) // Optional placeholder
-                .into(imageArticle) // Set the image into ImageView
-        }
+        Glide.with(this)
+            .load(imageUrl)
+            .placeholder(R.drawable.placeholder_image) // Placeholder while loading
+                        .into(imageArticle)
     }
 }

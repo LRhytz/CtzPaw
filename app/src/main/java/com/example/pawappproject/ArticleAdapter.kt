@@ -10,7 +10,7 @@ import com.google.android.material.imageview.ShapeableImageView
 
 class ArticleAdapter(private val articleList: ArrayList<Articles>) : RecyclerView.Adapter<ArticleAdapter.MyViewHolder>() {
 
-    private var mListener: onItemClickListener? = null  // Make nullable to avoid uninitialized error
+    private var mListener: onItemClickListener? = null
 
     interface onItemClickListener {
         fun onItemClick(position: Int)
@@ -32,22 +32,22 @@ class ArticleAdapter(private val articleList: ArrayList<Articles>) : RecyclerVie
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = articleList[position]
 
-        // Use Glide to load the image from the URL
-        Glide.with(holder.itemView.context)
-            .load(currentItem.TitleImg)  // Assuming TitleImg is a URL
-            .override(600, 400)  // Set fixed size for loading images
-            .into(holder.TitleImg)  // Load the image into the ShapeableImageView
-
         holder.tvHeading.text = currentItem.title
+
+        // Load the image using Glide, handling null or empty URLs
+        Glide.with(holder.itemView.context)
+            .load(currentItem.titleImg) // Load the URL
+            .placeholder(R.drawable.placeholder_image) // Show placeholder while loading
+            .into(holder.titleImg)
     }
 
     class MyViewHolder(itemView: View, listener: onItemClickListener?) : RecyclerView.ViewHolder(itemView) {
-        val TitleImg: ShapeableImageView = itemView.findViewById(R.id.TitleImg)
+        val titleImg: ShapeableImageView = itemView.findViewById(R.id.TitleImg)
         val tvHeading: TextView = itemView.findViewById(R.id.tvHeading)
 
         init {
             itemView.setOnClickListener {
-                listener?.onItemClick(adapterPosition)  // Safely call the listener if it's set
+                listener?.onItemClick(adapterPosition)
             }
         }
     }

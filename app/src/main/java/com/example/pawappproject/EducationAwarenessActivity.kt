@@ -2,12 +2,11 @@ package com.example.pawappproject
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import com.google.firebase.database.*
 
 class EducationAwarenessActivity : AppCompatActivity() {
@@ -23,32 +22,39 @@ class EducationAwarenessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_education_awareness)
 
+        // Initialize Firebase Database reference
         database = FirebaseDatabase.getInstance().getReference("articles")
 
+        // Set up RecyclerView and SearchView
         newRecyclerView = findViewById(R.id.awarenessRecyclerView)
         searchView = findViewById(R.id.searchView)
 
         newRecyclerView.layoutManager = LinearLayoutManager(this)
         newRecyclerView.setHasFixedSize(true)
 
+        // Initialize the lists and adapter
         newArrayList = arrayListOf()
         filteredList = arrayListOf()
-
         adapter = ArticleAdapter(filteredList)
         newRecyclerView.adapter = adapter
 
+        // Set up the adapter's click listener to open articles
         adapter.setOnItemClickListener(object : ArticleAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
-                val intent = Intent(this@EducationAwarenessActivity, ArticlesActivity::class.java)
-                intent.putExtra("title", filteredList[position].title)
-                intent.putExtra("ImageId", filteredList[position].TitleImg)
-                intent.putExtra("articles", filteredList[position].content)
+                val selectedArticle = filteredList[position]
+                val intent = Intent(this@EducationAwarenessActivity, ArticlesActivity::class.java).apply {
+                    putExtra("title", selectedArticle.title)
+                    putExtra("ImageId", selectedArticle.titleImg)
+                    putExtra("articles", selectedArticle.content)
+                }
                 startActivity(intent)
             }
         })
 
+        // Fetch articles from Firebase
         fetchArticlesFromFirebase()
 
+        // Set up the search functionality
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -59,12 +65,6 @@ class EducationAwarenessActivity : AppCompatActivity() {
                 return true
             }
         })
-
-        val addButton: Button = findViewById(R.id.addReadingMaterialButton)
-        addButton.setOnClickListener {
-            val intent = Intent(this, AddReadingMaterialActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun fetchArticlesFromFirebase() {

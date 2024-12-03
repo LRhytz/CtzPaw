@@ -60,6 +60,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation("com.google.firebase:firebase-messaging")
     implementation ("com.stripe:stripe-android:20.17.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")

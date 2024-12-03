@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -59,18 +60,6 @@
         app:layout_constraintTop_toBottomOf="@id/searchView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/addReadingMaterialButton"
-        tools:listitem="@layout/list_item_awareness"/>
-
-    <!-- Add Reading Material Button -->
-    <Button
-        android:id="@+id/addReadingMaterialButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Add Reading Material"
-        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_default="spread"/>
+        tools:listitem="@layout/list_item_awareness"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

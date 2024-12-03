@@ -1,8 +1,8 @@
 package com.example.pawappproject
 
 data class Articles(
-    val title: String = "",       // Default value for title
-    val category: String?  = null,    // Default value for category
-    val content: String? = null,     // Default value for content
-    val TitleImg: String? = null        // Default value for TitleImg (assuming 0 as default image resource)
+    val title: String = "",       // Title of the article
+    val category: String? = null, // Category of the article (nullable)
+    val content: String? = null,  // Content of the article (nullable)
+    val titleImg: String? = null  // Image URL for the article (nullable)
 )
