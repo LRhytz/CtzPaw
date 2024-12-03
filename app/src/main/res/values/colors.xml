@@ -15,6 +15,8 @@
     <!-- Citizen color themes -->
     <color name="ctz_fuchsia">#D0346C</color>
     <color name="ctz_lightPink">#FCC0C5</color>
+    <color name="ctz_veryLightPink">#fef1f2</color>
+
 
     <!-- Organization color themes -->
     <color name="org_lightGreen">#D1E3B1</color>
