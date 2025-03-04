@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pawappproject.databinding.ActivityLoginBinding
-import com.example.pawappproject.fragments.CitizenHomeFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -24,22 +23,7 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
 
         binding.BtnLogin.setOnClickListener {
-            val loginEmail = binding.LoginEmail.text.toString().trim()
-            val loginPassword = binding.LoginPassword.text.toString().trim()
-            if (loginEmail.isNotEmpty() && loginPassword.isNotEmpty()) {
-                firebaseAuth.signInWithEmailAndPassword(loginEmail, loginPassword).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        saveEmailToPreferences(loginEmail)
-                        val intent = Intent(this, DashboardActivity::class.java) // Redirect to Citizen Dashboard
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Login failed: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
-            }
+            loginUser()
         }
 
         binding.SignupRedirect.setOnClickListener {
@@ -47,11 +31,47 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.btnResendVerification.setOnClickListener {
+            resendVerificationEmail()
+        }
     }
 
-    private fun saveEmailToPreferences(email: String) {
-        val editor = sharedPreferences.edit()
-        editor.putString("userEmail", email)
-        editor.apply()
+    private fun loginUser() {
+        val email = binding.LoginEmail.text.toString().trim()
+        val password = binding.LoginPassword.text.toString().trim()
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = firebaseAuth.currentUser
+                    if (user != null && user.isEmailVerified) {
+                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                        finish()
+                    } else {
+                        firebaseAuth.signOut()
+                        Toast.makeText(this, "Please verify your email before logging in.", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    private fun resendVerificationEmail() {
+        val user = firebaseAuth.currentUser
+        user?.sendEmailVerification()?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this, "Verification email resent. Check your inbox.", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

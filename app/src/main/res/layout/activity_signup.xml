@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="#B37F4D"
+    android:orientation="vertical"
     tools:context=".SignupActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/ic_paw_app_logo"/>
+        android:layout_marginTop="3dp"
+        android:src="@drawable/ic_paw_app_logo" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -22,97 +21,182 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@drawable/custom_edittxt">
+            android:layout_height="match_parent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Signup"
-                android:id="@+id/LoginTxt"
-                android:textSize="36sp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/mediumBrown"
-                android:fontFamily="@font/poppinsmedium"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/SignEmail"
-                android:background="@drawable/custom_edittxt"
-                android:layout_marginTop="40dp"
-                android:padding="8dp"
-                android:hint="Email"
-                android:drawableLeft="@drawable/email"
-                android:drawablePadding="8dp"
-                android:textColor="@color/black"
-                android:singleLine="true"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/SignPassword"
-                android:background="@drawable/custom_edittxt"
-                android:layout_marginTop="40dp"
-                android:padding="8dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:drawableLeft="@drawable/password"
-                android:drawablePadding="8dp"
-                android:singleLine="true"
-                android:textColor="@color/black"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Sign Up"
-                android:id="@+id/BtnSignup"
-                android:fontFamily="@font/poppinssemibold"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/lightBrown"
-                app:cornerRadius = "20dp"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center">
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="24dp"
+                android:background="@drawable/custom_edittxt">
 
                 <TextView
-                    android:id="@+id/LoginTxtBottom"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Already have an Account?"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:text="Signup"
+                    android:id="@+id/LoginTxt"
+                    android:textSize="36sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/mediumBrown"
+                    android:fontFamily="@font/poppinsmedium" />
 
+                <!-- First Name -->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/SignFirstName"
+                    android:hint="First Name"
+                    android:background="@drawable/custom_edittxt"
+                    android:padding="8dp"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Last Name -->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/SignLastName"
+                    android:hint="Last Name"
+                    android:background="@drawable/custom_edittxt"
+                    android:padding="8dp"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Username -->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/SignUsername"
+                    android:hint="Username"
+                    android:background="@drawable/custom_edittxt"
+                    android:padding="8dp"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Email Address -->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/SignEmail"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/custom_edittxt"
+                    android:padding="8dp"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Phone Number with Country Code -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <Spinner
+                        android:id="@+id/SignCountryCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="8dp"
+                        android:entries="@array/country_codes" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/SignPhoneNumber"
+                        android:hint="Phone Number"
+                        android:inputType="phone"
+                        android:background="@drawable/custom_edittxt"
+                        android:padding="8dp" />
+                </LinearLayout>
+
+                <!-- Date of Birth (Now with Calendar Picker) -->
+                <TextView
+                    android:id="@+id/SignDob"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Select Date of Birth"
+                    android:background="@drawable/custom_edittxt"
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginTop="14dp"/>
+
+
+                <!-- Gender Selection -->
+                <RadioGroup
+                    android:id="@+id/genderRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <RadioButton
+                        android:id="@+id/genderMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/genderFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female" />
+
+                    <RadioButton
+                        android:id="@+id/genderOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prefer not to say" />
+                </RadioGroup>
+
+                <!-- Password -->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/SignPassword"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:background="@drawable/custom_edittxt"
+                    android:padding="8dp"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Confirm Password -->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/SignConfirmPassword"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:background="@drawable/custom_edittxt"
+                    android:padding="8dp"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Sign Up Button -->
+                <Button
+                    android:layout_width="320dp"
+                    android:layout_height="60dp"
+                    android:text="Sign Up"
+                    android:id="@+id/BtnSignup"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/lightBrown" />
+
+                <!-- Login Redirect -->
                 <TextView
                     android:id="@+id/LoginRedirect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/LoginTxtBottom"
-                    android:text="Login"
+                    android:text="Already have an account? Login"
                     android:textStyle="bold"
-                    android:textSize="12sp"
-                    android:textColor="@color/ctz_lightPink" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
+                    android:textSize="16sp"
+                    android:textColor="@color/ctz_lightPink"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/signupimgbottom"/>
-
-
 </LinearLayout>

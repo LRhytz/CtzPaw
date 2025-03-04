@@ -1,58 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
     <!-- Profile Image -->
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_profile" />
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_profile"
+        android:scaleType="centerCrop"
+        android:padding="4dp"/>
 
-    <!-- EditText Fields for First and Last Name -->
-    <EditText
-        android:id="@+id/firstNameEditText"
+    <!-- Edit Icon for Profile Image -->
+    <ImageView
+        android:id="@+id/editProfileImage"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@id/profileImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-16dp"
+        android:src="@drawable/editing"
+        android:background="@drawable/circle_background"
+        android:padding="8dp"/>
+
+    <!-- Form Fields -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="First Name"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@id/editProfileImage"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/lastNameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Last Name"
-        android:layout_marginTop="8dp" />
+        <!-- Username -->
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:padding="10dp" />
 
-    <!-- Bio Field -->
-    <EditText
-        android:id="@+id/bioEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Bio"
-        android:layout_marginTop="8dp" />
+        <!-- First Name -->
+        <EditText
+            android:id="@+id/firstNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:padding="10dp"
+            android:layout_marginTop="8dp"/>
 
-    <!-- Birthdate Field -->
-    <EditText
-        android:id="@+id/birthdateEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Birthdate (YYYY-MM-DD)"
-        android:inputType="date"
-        android:layout_marginTop="8dp" />
+        <!-- Last Name -->
+        <EditText
+            android:id="@+id/lastNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:padding="10dp"
+            android:layout_marginTop="8dp"/>
 
-    <!-- Save Button -->
+        <!-- Phone -->
+        <EditText
+            android:id="@+id/phoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Bio -->
+        <EditText
+            android:id="@+id/bioEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bio"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:padding="10dp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Birthdate (Read-Only, opens Date Picker) -->
+        <EditText
+            android:id="@+id/birthdateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Birthdate (YYYY-MM-DD)"
+            android:focusable="false"
+            android:inputType="none"
+            android:padding="10dp"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+    <!-- Save Button (Bottom-Right) -->
     <Button
         android:id="@+id/saveProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Profile"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp" />
+        android:text="Save"
+        android:backgroundTint="@color/org_lightGreen"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"/>
 
-</LinearLayout>
+</RelativeLayout>

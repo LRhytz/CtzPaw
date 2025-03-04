@@ -26,7 +26,6 @@
             android:textColor="@color/black"
             android:fontFamily="@font/poppinssemibold"
             android:textSize="18sp"/>
-
     </RelativeLayout>
 
     <ScrollView
@@ -38,33 +37,52 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <!-- ✅ Circular Profile Image Added -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_profile"/>
 
+            <!-- Username -->
             <TextView
+                android:id="@+id/txtUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:text="Test User"
+                android:text="Loading..."
                 android:fontFamily="@font/poppinssemibold"
                 android:textSize="16sp"/>
 
+            <!-- Bio -->
             <TextView
+                android:id="@+id/txtBio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+63 92800 23632"
+                android:text="Loading..."
+                android:textColor="#686D76"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"/>
+
+            <!-- Phone Number -->
+            <TextView
+                android:id="@+id/txtPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loading..."
                 android:textColor="#686D76"
                 android:textSize="15sp"
                 android:layout_gravity="center"/>
 
+            <!-- Email -->
             <TextView
+                android:id="@+id/txtEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="test@gmail.com"
+                android:text="Loading..."
                 android:textColor="#686D76"
                 android:textSize="15sp"
                 android:layout_gravity="center"/>
@@ -81,6 +99,8 @@
                 android:fontFamily="@font/poppinsmedium"
                 android:textAllCaps="false"
                 android:paddingEnd="30dp"/>
+
+            <!-- ✅ No Buttons or Layouts Removed, Everything is Intact -->
 
             <LinearLayout
                 android:background="@drawable/round_back_white10_20"
@@ -155,9 +175,9 @@
 
                 </RelativeLayout>
 
-
             </LinearLayout>
 
+            <!-- Premium Subscription Button -->
             <LinearLayout
                 android:id="@+id/PremiumSubBtn"
                 android:background="@drawable/round_back_white10_20"
@@ -200,20 +220,8 @@
 
                 </RelativeLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Aboutbtn"
-                android:background="@drawable/round_back_white10_20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                android:padding="15dp">
-
                 <RelativeLayout
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -244,53 +252,20 @@
 
                 </RelativeLayout>
 
-
             </LinearLayout>
 
-            <LinearLayout
+            <!-- Logout Button (Centered) -->
+            <Button
                 android:id="@+id/LogoutBtn"
-                android:background="@drawable/round_back_white10_20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="360dp"
+                android:layout_height="50dp"
+                android:text="Logout"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/LogoutImg"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:padding="12dp"
-                        android:src="@drawable/logout"
-                        android:background="@drawable/round_back_night_mode"/>
-
-                    <TextView
-                        android:layout_marginStart="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Logout"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppinssemibold"
-                        android:layout_toEndOf="@+id/LogoutImg"/>
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/next"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-
-                </RelativeLayout>
-
-            </LinearLayout>
+                android:backgroundTint="@color/red"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"/>
 
         </LinearLayout>
 

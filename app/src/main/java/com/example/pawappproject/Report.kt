@@ -1,12 +1,16 @@
-package com.example.pawappproject.models
+package com.example.pawappproject
 
 data class Report(
     var reportId: String = "",
     var reportType: String = "",
     var reportDescription: String = "",
     val imageUrls: List<String> = listOf(),
-    var reportUserEmail: String? = null
+    var reportUserEmail: String? = null,
+    var latitude: Double? = null,
+    var longitude: Double? = null,
+    var videoUrl: String? = null,
+    var status: String = "Submitted"
 ) {
-    // For no-argument constructor required by Firebase
-    constructor() : this("", "", "", listOf(), null)
+    constructor() : this("", "", "", listOf(), null, null, null, null, "Submitted")
 }
+

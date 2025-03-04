@@ -30,10 +30,16 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        // Setup "Get Started" button
-        val getStartedButton = findViewById<Button>(R.id.LoginCitizenBtn) // Using the existing button ID
-        getStartedButton.text = "Get Started" // Ensure the button text is updated
-        getStartedButton.setOnClickListener {
+        // Setup "Login as Organization" button
+        val loginOrganizationButton = findViewById<Button>(R.id.LoginOrganizationBtn)
+        loginOrganizationButton.setOnClickListener {
+            val intent = Intent(this, OrganizationLoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Setup "Login as Citizen" button
+        val loginCitizenButton = findViewById<Button>(R.id.LoginCitizenBtn)
+        loginCitizenButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

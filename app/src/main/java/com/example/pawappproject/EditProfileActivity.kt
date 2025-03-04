@@ -5,29 +5,32 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
 
-    private lateinit var profileImageView: ImageView
+    private lateinit var profileImageView: CircleImageView
     private lateinit var firstNameEditText: EditText
     private lateinit var lastNameEditText: EditText
+    private lateinit var usernameEditText: EditText
+    private lateinit var phoneEditText: EditText
     private lateinit var bioEditText: EditText
     private lateinit var birthdateEditText: EditText
     private lateinit var saveProfileButton: Button
 
-    private val database = FirebaseDatabase.getInstance()
-    private val userRef = database.getReference("users").child("USER_ID") // Replace with user ID logic
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var storageReference: FirebaseStorage
+    private var profileImageUri: Uri? = null
 
     private val PICK_IMAGE = 1
-    private var profileImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +39,17 @@ class EditProfileActivity : AppCompatActivity() {
         profileImageView = findViewById(R.id.profileImageView)
         firstNameEditText = findViewById(R.id.firstNameEditText)
         lastNameEditText = findViewById(R.id.lastNameEditText)
+        usernameEditText = findViewById(R.id.usernameEditText)
+        phoneEditText = findViewById(R.id.phoneEditText)
         bioEditText = findViewById(R.id.bioEditText)
         birthdateEditText = findViewById(R.id.birthdateEditText)
         saveProfileButton = findViewById(R.id.saveProfileButton)
 
-        // Load current user data into the fields (Optional)
+        firebaseAuth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().getReference("users")
+        storageReference = FirebaseStorage.getInstance()
+
+        loadUserProfile()
 
         profileImageView.setOnClickListener {
             val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -54,6 +63,33 @@ class EditProfileActivity : AppCompatActivity() {
         saveProfileButton.setOnClickListener {
             saveUserProfile()
         }
+    }
+
+    private fun loadUserProfile() {
+        val userId = firebaseAuth.currentUser?.uid ?: return
+        databaseReference.child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    firstNameEditText.setText(snapshot.child("firstName").getValue(String::class.java) ?: "")
+                    lastNameEditText.setText(snapshot.child("lastName").getValue(String::class.java) ?: "")
+                    usernameEditText.setText(snapshot.child("username").getValue(String::class.java) ?: "")
+                    phoneEditText.setText(snapshot.child("phone").getValue(String::class.java) ?: "")
+                    bioEditText.setText(snapshot.child("bio").getValue(String::class.java) ?: "")
+                    birthdateEditText.setText(snapshot.child("birthdate").getValue(String::class.java) ?: "")
+
+                    val profileImageUrl = snapshot.child("profileImage").getValue(String::class.java)
+                    if (!profileImageUrl.isNullOrEmpty()) {
+                        Glide.with(this@EditProfileActivity)
+                            .load(profileImageUrl)
+                            .into(profileImageView)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@EditProfileActivity, "Failed to load profile", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun showDatePickerDialog() {
@@ -71,31 +107,56 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun saveUserProfile() {
+        val userId = firebaseAuth.currentUser?.uid ?: return
+
         val firstName = firstNameEditText.text.toString().trim()
         val lastName = lastNameEditText.text.toString().trim()
+        val username = usernameEditText.text.toString().trim()
+        val phone = phoneEditText.text.toString().trim()
         val bio = bioEditText.text.toString().trim()
         val birthdate = birthdateEditText.text.toString().trim()
 
-        if (firstName.isEmpty() || lastName.isEmpty() || bio.isEmpty() || birthdate.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || phone.isEmpty() || bio.isEmpty() || birthdate.isEmpty()) {
             Toast.makeText(this, "Please fill all fields.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Save the profile details to Firebase
         val userProfile = mapOf(
             "firstName" to firstName,
             "lastName" to lastName,
+            "username" to username,
+            "phone" to phone,
             "bio" to bio,
-            "birthdate" to birthdate,
-            "profileImage" to profileImageUri.toString()
+            "birthdate" to birthdate
         )
 
-        userRef.setValue(userProfile).addOnCompleteListener { task ->
+        databaseReference.child(userId).updateChildren(userProfile).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(this, "Profile updated.", Toast.LENGTH_SHORT).show()
-                finish() // Go back to the profile fragment
+                if (profileImageUri != null) {
+                    uploadProfileImage(userId)
+                } else {
+                    Toast.makeText(this, "Profile updated.", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
             } else {
                 Toast.makeText(this, "Failed to update profile.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun uploadProfileImage(userId: String) {
+        val imageRef = storageReference.getReference("profile_images/$userId.jpg")
+        profileImageUri?.let { uri ->
+            imageRef.putFile(uri).addOnSuccessListener {
+                imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    databaseReference.child(userId).child("profileImage").setValue(downloadUri.toString())
+                        .addOnCompleteListener {
+                            Toast.makeText(this, "Profile updated with image.", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Failed to upload image.", Toast.LENGTH_SHORT).show()
             }
         }
     }

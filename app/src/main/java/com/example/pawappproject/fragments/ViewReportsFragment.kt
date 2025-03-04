@@ -1,19 +1,24 @@
-package com.example.pawappproject
+package com.example.pawappproject.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pawappproject.fragments.ReportDetailsFragment
-import com.example.pawappproject.models.Report
+import com.example.pawappproject.DeleteDialogFragment
+import com.example.pawappproject.R
+import com.example.pawappproject.ViewReportsAdapter
+import com.example.pawappproject.Report
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.util.Locale
 
-class ViewReportsActivity : AppCompatActivity(), ViewReportsAdapter.OnDeleteButtonClickListener,
+class ViewReportsFragment : Fragment(), ViewReportsAdapter.OnDeleteButtonClickListener,
     ViewReportsAdapter.OnItemClickListener, DeleteDialogFragment.DeleteDialogListener {
 
     private lateinit var database: DatabaseReference
@@ -26,27 +31,36 @@ class ViewReportsActivity : AppCompatActivity(), ViewReportsAdapter.OnDeleteButt
 
     private var selectedReportId: String = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_reports)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_view_reports, container, false)
 
+        // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
         currentUser = firebaseAuth.currentUser!!
 
-        reportsRecyclerView = findViewById(R.id.reportsRecyclerView)
-        reportsRecyclerView.layoutManager = LinearLayoutManager(this)
+        // Initialize RecyclerView
+        reportsRecyclerView = view.findViewById(R.id.reportsRecyclerView)
+        reportsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         reportsRecyclerView.setHasFixedSize(true)
 
+        // Initialize Lists and Adapter
         reportsArrayList = arrayListOf()
         filteredReportsList = arrayListOf()
         adapter = ViewReportsAdapter(filteredReportsList, this, this)
         reportsRecyclerView.adapter = adapter
 
+        // Initialize Firebase Database reference
         database = FirebaseDatabase.getInstance().getReference("reports")
 
+        // Load the report data
         getReportData()
 
-        val searchView: SearchView = findViewById(R.id.searchView)
+        // Setup SearchView for filtering reports
+        val searchView: SearchView = view.findViewById(R.id.searchView)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 filterReports(query)
@@ -58,6 +72,8 @@ class ViewReportsActivity : AppCompatActivity(), ViewReportsAdapter.OnDeleteButt
                 return true
             }
         })
+
+        return view
     }
 
     private fun getReportData() {
@@ -76,7 +92,7 @@ class ViewReportsActivity : AppCompatActivity(), ViewReportsAdapter.OnDeleteButt
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ViewReportsActivity, "Failed to load reports", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to load reports", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -100,7 +116,7 @@ class ViewReportsActivity : AppCompatActivity(), ViewReportsAdapter.OnDeleteButt
     override fun onDeleteButtonClick(reportId: String) {
         selectedReportId = reportId
         val dialog = DeleteDialogFragment()
-        dialog.show(supportFragmentManager, "DeleteDialogFragment")
+        dialog.show(parentFragmentManager, "DeleteDialogFragment")
     }
 
     override fun onItemClick(reportId: String) {
@@ -109,8 +125,8 @@ class ViewReportsActivity : AppCompatActivity(), ViewReportsAdapter.OnDeleteButt
                 putString("reportId", reportId)
             }
         }
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.reportsRecyclerView, fragment)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fl_wrapper, fragment) // Use fl_wrapper as the container ID
             .addToBackStack(null)
             .commit()
     }
@@ -118,10 +134,10 @@ class ViewReportsActivity : AppCompatActivity(), ViewReportsAdapter.OnDeleteButt
     override fun onDialogPositiveClick() {
         database.child(selectedReportId).removeValue()
             .addOnSuccessListener {
-                Toast.makeText(this, "Report deleted successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Report deleted successfully", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to delete report", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to delete report", Toast.LENGTH_SHORT).show()
             }
     }
 

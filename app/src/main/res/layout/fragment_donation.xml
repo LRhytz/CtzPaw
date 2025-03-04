@@ -20,13 +20,13 @@
             android:textStyle="bold" />
 
         <!-- SearchView for filtering -->
-        <SearchView
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/searchViewDonations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewTitle"
             android:iconifiedByDefault="false"
-            android:queryHint="Search donations..." />
+            android:queryHint="Search donations" />
 
         <!-- ListView -->
         <ListView
@@ -37,15 +37,6 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="8dp"
             android:padding="16dp" />
-
-        <Button
-            android:id="@+id/buttonAddDonation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16dp"
-            android:text="Add Donation Request" />
 
     </RelativeLayout>
 

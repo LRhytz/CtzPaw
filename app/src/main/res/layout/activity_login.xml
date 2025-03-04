@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,19 +8,20 @@
     android:background="#B37F4D"
     tools:context=".LoginActivity">
 
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_paw_app_logo"
         app:layout_constraintWidth_percent="0.8"
-        app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Login Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
@@ -37,6 +39,7 @@
             android:orientation="vertical"
             android:padding="24dp">
 
+            <!-- Login Title -->
             <TextView
                 android:id="@+id/LoginTxt"
                 android:layout_width="match_parent"
@@ -48,6 +51,7 @@
                 android:textColor="@color/mediumBrown"
                 android:fontFamily="@font/poppinsmedium"/>
 
+            <!-- Email Input -->
             <EditText
                 android:id="@+id/LoginEmail"
                 android:layout_width="match_parent"
@@ -61,6 +65,7 @@
                 android:textColor="@color/black"
                 android:singleLine="true"/>
 
+            <!-- Password Input -->
             <EditText
                 android:id="@+id/LoginPassword"
                 android:layout_width="match_parent"
@@ -75,6 +80,7 @@
                 android:textColor="@color/black"
                 android:singleLine="true"/>
 
+            <!-- Forgot Password -->
             <TextView
                 android:id="@+id/ForgotPass"
                 android:layout_width="wrap_content"
@@ -82,8 +88,11 @@
                 android:layout_marginTop="8dp"
                 android:text="Forgot Password?"
                 android:textSize="12sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_gravity="center"/>
 
+            <!-- Login Button -->
             <Button
                 android:id="@+id/BtnLogin"
                 android:layout_width="match_parent"
@@ -94,6 +103,25 @@
                 android:backgroundTint="@color/lightBrown"
                 app:cornerRadius="20dp"/>
 
+            <!-- Resend Verification Email Button -->
+            <Button
+                android:id="@+id/btnResendVerification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resend Verification Email"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                app:cornerRadius="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ForgotPass"/>
+
+
+            <!-- Sign-up Redirect -->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +132,7 @@
                     android:id="@+id/LoginTxtBottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Don't have any Account?"
+                    android:text="Don't have an account?"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -124,17 +152,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:id="@+id/bottomImageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/bottomimg"
-        app:layout_constraintWidth_percent="1"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.25"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
