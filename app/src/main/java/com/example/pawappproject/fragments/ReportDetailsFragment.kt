@@ -168,4 +168,11 @@ class ReportDetailsFragment : Fragment() {
             "Invalid Time"
         }
     }
+
+    // ✅ Added onBackPressed handler
+    fun onBackPressed(): Boolean {
+        // Return true if you handled the back press here (like dismissing a dialog).
+        // For now, we'll just return false to let the activity handle it.
+        return false
+    }
 }

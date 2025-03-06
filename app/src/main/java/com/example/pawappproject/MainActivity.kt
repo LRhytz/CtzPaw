@@ -2,6 +2,7 @@ package com.example.pawappproject
 
 import android.content.Intent
 import android.content.SharedPreferences
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -30,35 +31,30 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        // Setup "Login as Organization" button
-        val loginOrganizationButton = findViewById<Button>(R.id.LoginOrganizationBtn)
-        loginOrganizationButton.setOnClickListener {
-            val intent = Intent(this, OrganizationLoginActivity::class.java)
-            startActivity(intent)
-        }
+        // Handle back press properly
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val currentFragment = getCurrentFragment()
+                if (currentFragment is ReportDetailsFragment) {
+                    if (!currentFragment.onBackPressed()) {
+                        finish()
+                    }
+                } else {
+                    finish()
+                }
+            }
+        })
 
-        // Setup "Login as Citizen" button
-        val loginCitizenButton = findViewById<Button>(R.id.LoginCitizenBtn)
-        loginCitizenButton.setOnClickListener {
+        // Setup "Get Started" button (Citizen Login)
+        val citizenButton = findViewById<Button>(R.id.CitizenBtn)
+        citizenButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
 
-    override fun onBackPressed() {
-        val currentFragment = getCurrentFragment()
-
-        if (currentFragment is ReportDetailsFragment) {
-            if (!currentFragment.onBackPressed()) {
-                super.onBackPressed()
-            }
-        } else {
-            super.onBackPressed()
-        }
-    }
-
     private fun getCurrentFragment(): Fragment? {
-        return supportFragmentManager.findFragmentById(R.id.fl_wrapper)
+        return supportFragmentManager.findFragmentById(R.id.fragmentContainer)
     }
 
     private fun isLoggedIn(): Boolean {
