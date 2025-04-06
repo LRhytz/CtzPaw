@@ -9,6 +9,10 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.pawappproject.fragments.ReportDetailsFragment
 import com.google.firebase.auth.FirebaseAuth
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,18 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         // Check if the user is already logged in
         if (isLoggedIn()) {
-            // Read stored userType to decide which dashboard to open
-            val userType = sharedPreferences.getString("userType", null)
-            if (userType != null) {
-                if (userType == "Organization") {
-                    startActivity(Intent(this, OrgDashboardActivity::class.java))
-                } else { // Default to Citizen
-                    startActivity(Intent(this, DashboardActivity::class.java))
-                }
-                finish()
-                return
-            }
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
         }
+
+        createNotificationChannel()
 
         setContentView(R.layout.activity_main)
 
@@ -74,5 +73,21 @@ class MainActivity : AppCompatActivity() {
     private fun isLoggedIn(): Boolean {
         val userEmail = sharedPreferences.getString("userEmail", null)
         return userEmail != null && firebaseAuth.currentUser != null
+    }
+
+    fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "report_submission_channel"
+            val channelName = "Report Submissions"
+            val channelDescription = "Notifies when a user successfully submits a report"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+
+            val channel = NotificationChannel(channelId, channelName, importance).apply {
+                description = channelDescription
+            }
+
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }

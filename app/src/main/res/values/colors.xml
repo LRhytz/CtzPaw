@@ -12,6 +12,7 @@
     <color name="brightRed">#FF0000</color>
     <color name="lightGray">#E0E0E0</color>
     <color name="buttonPressed">#C1CFA1</color>
+
     <!-- Citizen color themes -->
     <color name="ctz_fuchsia">#D0346C</color>
     <color name="ctz_lightPink">#FCC0C5</color>

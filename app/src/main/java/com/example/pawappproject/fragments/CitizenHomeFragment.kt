@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import com.example.pawappproject.EducationAwarenessCitizenActivity
 import com.example.pawappproject.AdoptionListActivity
+import com.example.pawappproject.EducationAwarenessCitizenActivity
 import com.example.pawappproject.R
 
 private const val ARG_PARAM1 = "param1"
@@ -44,10 +44,9 @@ class CitizenHomeFragment : Fragment() {
             startActivity(intent)
         }
 
-
         educationCard.setOnClickListener {
             showToast("Education and Awareness Card Clicked")
-            // Start the EducationAwarenessActivity
+            // Start the EducationAwarenessCitizenActivity
             val intent = Intent(activity, EducationAwarenessCitizenActivity::class.java)
             startActivity(intent)
         }

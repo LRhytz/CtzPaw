@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -49,7 +52,9 @@
             android:name=".RecommendedPetsAdapter"
             android:exported="false" />
         <activity
-            android:name=".AdoptionListActivity"
+            android:name=".AdoptionListActivity" />
+        <activity
+            android:name=".AddReadingMaterialActivity"
             android:exported="false" />
         <activity
             android:name=".OrganizationSignupActivity"
@@ -61,11 +66,20 @@
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".DonationDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DonationRequestFormActivity"
+            android:exported="false" />
+        <activity
             android:name=".CitizenSubscriptionActivity"
             android:exported="false" />
         <activity
             android:name=".DialogActivity"
             android:exported="false" />
+        <activity
+            android:name=".ViewReportsActivity"
+            android:exported="false" /> <!-- FileProvider for sharing images -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.pawappproject.provider"
@@ -84,6 +98,12 @@
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ArticlesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EducationAwarenessActivity"
             android:exported="false" />
         <activity
             android:name=".SignupActivity"

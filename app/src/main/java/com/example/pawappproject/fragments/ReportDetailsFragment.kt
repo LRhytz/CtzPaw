@@ -11,7 +11,10 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.pawappproject.ImagesAdapter
 import com.example.pawappproject.R
 import com.example.pawappproject.Report
 import com.google.firebase.database.*
@@ -36,6 +39,8 @@ class ReportDetailsFragment : Fragment() {
     private lateinit var videoView: VideoView
     private lateinit var mapView: MapView
 
+    private lateinit var imagesRecyclerView: RecyclerView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,9 +55,11 @@ class ReportDetailsFragment : Fragment() {
         dateTextView = view.findViewById(R.id.dateTextView)
         timeTextView = view.findViewById(R.id.timeTextView)
         locationTextView = view.findViewById(R.id.locationTextView)
-        reportImageView = view.findViewById(R.id.reportImageView)
+        //reportImageView = view.findViewById(R.id.reportImageView)
         videoView = view.findViewById(R.id.videoView)
         mapView = view.findViewById(R.id.mapView)
+
+        imagesRecyclerView = view.findViewById(R.id.imagesRecyclerView)
 
         // Retrieve report ID from arguments
         reportId = arguments?.getString("reportId") ?: ""
@@ -107,7 +114,6 @@ class ReportDetailsFragment : Fragment() {
 
         val latitude = report.latitude
         val longitude = report.longitude
-
         if (latitude != null && longitude != null) {
             locationTextView.text = "Pinned Location: $latitude, $longitude"
             displayLocationOnMap(latitude, longitude)
@@ -115,16 +121,23 @@ class ReportDetailsFragment : Fragment() {
             locationTextView.text = "Pinned Location: Not available"
         }
 
+        // UPDATED: Setup images RecyclerView using your ImagesAdapter to show all submitted images
         if (!report.imageUrls.isNullOrEmpty()) {
-            Glide.with(this)
-                .load(report.imageUrls[0])
-                .placeholder(R.drawable.placeholder_image)
-                .error(R.drawable.img_placeholder_error)
-                .into(reportImageView)
+            val imagesAdapter = ImagesAdapter(
+                imageUrls = report.imageUrls.toMutableList(),
+                maxImages = report.imageUrls.size, // Read-only: no add/remove actions in details view
+                onAddClick = {}, // No action on add in view mode
+                onRemoveClick = {}, // No action on remove in view mode
+                showCloseButton = false // Hide the close button in the report details view
+            )
+            imagesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            imagesRecyclerView.adapter = imagesAdapter
         } else {
-            reportImageView.setImageResource(R.drawable.placeholder_image)
+            // Optionally show a message if no images are available
+            Toast.makeText(context, "No images available", Toast.LENGTH_SHORT).show()
         }
 
+        // Handle video display (existing code)
         if (!report.videoUrl.isNullOrEmpty()) {
             videoView.setVideoURI(Uri.parse(report.videoUrl))
             videoView.start()
@@ -132,6 +145,9 @@ class ReportDetailsFragment : Fragment() {
             videoView.visibility = View.GONE
         }
     }
+
+
+
 
     private fun displayLocationOnMap(latitude: Double, longitude: Double) {
         val reportLocation = GeoPoint(latitude, longitude)
