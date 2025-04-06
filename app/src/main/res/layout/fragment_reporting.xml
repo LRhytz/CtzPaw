@@ -79,6 +79,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
+<<<<<<< HEAD
             <!-- Image and placeholder containers -->
             <LinearLayout
                 android:id="@+id/addMediasContainers"
@@ -157,10 +158,26 @@
 
             </LinearLayout>
 
+=======
+            <!-- Images RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imageRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/addMediaTextView"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="5dp"
+                android:clipToPadding="false"
+                android:clipToOutline="false"
+                android:scrollbars="horizontal" />
+
+            <!-- Video container with VideoView, Add Video button, and UPDATED progress bar -->
+>>>>>>> origin/Archival_Branch
             <LinearLayout
                 android:id="@+id/videoContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:orientation="vertical"
                 android:layout_below="@id/addMediasContainers"
                 android:layout_margin="16dp">
@@ -177,6 +194,75 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Video" />
+=======
+                android:layout_below="@id/imageRecyclerView"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <!-- UPDATED: FrameLayout to contain thumbnail, VideoView, and play button -->
+                <FrameLayout
+                    android:id="@+id/videoFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="8dp"
+                    android:visibility="gone">  <!-- Initially hidden -->
+
+                    <!-- Thumbnail ImageView -->
+                    <ImageView
+                        android:id="@+id/videoThumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:background="@android:color/darker_gray"
+                        android:visibility="gone" /> <!-- Start hidden if no video yet -->
+
+                    <!-- Actual VideoView (initially hidden, only show on play) -->
+                    <VideoView
+                        android:id="@+id/videoPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
+
+                    <!-- "Play" button overlay, placed in the center -->
+                    <ImageButton
+                        android:id="@+id/playButton"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_play_circle"/>
+
+                    <ImageButton
+                        android:id="@+id/removeVideoButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="top|end"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_close" />
+
+                </FrameLayout>
+
+                <ImageButton
+                    android:id="@+id/selectVideoButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_add_video_btn"
+                    android:background="@null"
+                    android:contentDescription="Add Video"
+                    android:scaleType="centerCrop"
+                    android:layout_margin="5dp"/>
+
+                <!-- UPDATED: Horizontal progress bar for video upload -->
+                <ProgressBar
+                    android:id="@+id/videoUploadProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone" />
+>>>>>>> origin/Archival_Branch
             </LinearLayout>
 
             <org.osmdroid.views.MapView
@@ -186,6 +272,16 @@
                 android:layout_below="@id/videoContainer"
                 android:layout_margin="16dp" />
 
+<<<<<<< HEAD
+=======
+            <Button
+                android:id="@+id/openLargeMapButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/videoContainer"
+                android:text="Open Large Map" />
+
+>>>>>>> origin/Archival_Branch
             <LinearLayout
                 android:id="@+id/reportDescriptionLayout"
                 android:layout_width="match_parent"
@@ -200,8 +296,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
                     android:text="Describe a report:"
+<<<<<<< HEAD
                     android:textSize="16sp"
                     android:textColor="@color/black" />
+=======
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+>>>>>>> origin/Archival_Branch
 
                 <EditText
                     android:id="@+id/reportDescription"
@@ -213,13 +314,17 @@
                     android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:padding="16dp" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Archival_Branch
             </LinearLayout>
 
             <Button
                 android:id="@+id/submitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/reportDescriptionLayout"
                 android:layout_marginTop="20dp"
@@ -229,3 +334,14 @@
         </RelativeLayout>
     </FrameLayout>
 </ScrollView>
+=======
+                android:layout_below="@id/reportDescriptionLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/ctz_fuchsia"
+                android:text="Submit" />
+
+        </RelativeLayout>
+    </FrameLayout>
+</ScrollView>
+>>>>>>> origin/Archival_Branch

@@ -67,6 +67,7 @@
             android:textSize="16sp"
             android:paddingBottom="12dp" />
 
+<<<<<<< HEAD
         <ImageView
             android:id="@+id/reportImageView"
             android:layout_width="match_parent"
@@ -75,6 +76,16 @@
             android:adjustViewBounds="true"
             android:src="@drawable/placeholder_image"
             android:layout_marginBottom="12dp" />
+=======
+        <!-- UPDATED: Horizontal RecyclerView for report images -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/imagesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
+>>>>>>> origin/Archival_Branch
 
         <VideoView
             android:id="@+id/videoView"

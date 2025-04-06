@@ -11,8 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawappproject.DeleteDialogFragment
 import com.example.pawappproject.R
+<<<<<<< HEAD
 import com.example.pawappproject.Report
 import com.example.pawappproject.ViewReportsAdapter
+=======
+import com.example.pawappproject.ViewReportsAdapter
+import com.example.pawappproject.Report
+>>>>>>> origin/Archival_Branch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*

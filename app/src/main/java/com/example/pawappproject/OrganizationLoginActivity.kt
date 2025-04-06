@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pawappproject.databinding.ActivityOrganizationLoginBinding
+<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+=======
+import com.example.pawappproject.fragments.CitizenHomeFragment
+import com.google.firebase.auth.FirebaseAuth
+>>>>>>> origin/Archival_Branch
 
 class OrganizationLoginActivity : AppCompatActivity() {
 
@@ -30,6 +35,7 @@ class OrganizationLoginActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+<<<<<<< HEAD
                         val uid = auth.currentUser?.uid
                         if (uid != null) {
                             // Read the organization record from the "organizations" node
@@ -56,6 +62,12 @@ class OrganizationLoginActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(this, "Unable to retrieve user information.", Toast.LENGTH_LONG).show()
                         }
+=======
+                        saveEmailToPreferences(email)
+                        val intent = Intent(this, DashboardActivity::class.java)
+                        startActivity(intent)
+                        finish()
+>>>>>>> origin/Archival_Branch
                     } else {
                         Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
@@ -71,4 +83,13 @@ class OrganizationLoginActivity : AppCompatActivity() {
             finish()
         }
     }
+<<<<<<< HEAD
+=======
+
+    private fun saveEmailToPreferences(email: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("userEmail", email)
+        editor.apply()
+    }
+>>>>>>> origin/Archival_Branch
 }

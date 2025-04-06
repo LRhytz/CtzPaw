@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:gravity="bottom">
 
+<<<<<<< HEAD
         <!-- Citizen Login Button -->
         <Button
             android:id="@+id/CitizenBtn"
@@ -59,12 +60,33 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/CitizenBtn"
             android:layout_marginTop="12dp" />
+=======
+        <Button
+        android:id="@+id/CitizenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Get Started"
+        android:textColor="#FFA500"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppinssemibold"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp" />
+>>>>>>> origin/Archival_Branch
 
         <TextView
             android:id="@+id/MainTxtBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_below="@id/OrgBtn"
+=======
+            android:layout_below="@id/CitizenBtn"
+>>>>>>> origin/Archival_Branch
             android:layout_marginTop="16dp"
             android:text="@string/app_description"
             android:textColor="#FFA500"

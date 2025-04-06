@@ -3,6 +3,10 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+<<<<<<< HEAD
+=======
+        maven(url = "https://jitpack.io")
+>>>>>>> origin/Archival_Branch
     }
     dependencies {
         classpath("com.google.gms:google-services:4.4.1")

@@ -11,7 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
+<<<<<<< HEAD
 import com.bumptech.glide.Glide
+=======
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.pawappproject.ImagesAdapter
+>>>>>>> origin/Archival_Branch
 import com.example.pawappproject.R
 import com.example.pawappproject.Report
 import com.google.firebase.database.*
@@ -36,6 +43,11 @@ class ReportDetailsFragment : Fragment() {
     private lateinit var videoView: VideoView
     private lateinit var mapView: MapView
 
+<<<<<<< HEAD
+=======
+    private lateinit var imagesRecyclerView: RecyclerView
+
+>>>>>>> origin/Archival_Branch
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,10 +62,19 @@ class ReportDetailsFragment : Fragment() {
         dateTextView = view.findViewById(R.id.dateTextView)
         timeTextView = view.findViewById(R.id.timeTextView)
         locationTextView = view.findViewById(R.id.locationTextView)
+<<<<<<< HEAD
         reportImageView = view.findViewById(R.id.reportImageView)
         videoView = view.findViewById(R.id.videoView)
         mapView = view.findViewById(R.id.mapView)
 
+=======
+        //reportImageView = view.findViewById(R.id.reportImageView)
+        videoView = view.findViewById(R.id.videoView)
+        mapView = view.findViewById(R.id.mapView)
+
+        imagesRecyclerView = view.findViewById(R.id.imagesRecyclerView)
+
+>>>>>>> origin/Archival_Branch
         // Retrieve report ID from arguments
         reportId = arguments?.getString("reportId") ?: ""
         if (reportId.isEmpty()) {
@@ -107,7 +128,10 @@ class ReportDetailsFragment : Fragment() {
 
         val latitude = report.latitude
         val longitude = report.longitude
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Archival_Branch
         if (latitude != null && longitude != null) {
             locationTextView.text = "Pinned Location: $latitude, $longitude"
             displayLocationOnMap(latitude, longitude)
@@ -115,6 +139,7 @@ class ReportDetailsFragment : Fragment() {
             locationTextView.text = "Pinned Location: Not available"
         }
 
+<<<<<<< HEAD
         if (!report.imageUrls.isNullOrEmpty()) {
             Glide.with(this)
                 .load(report.imageUrls[0])
@@ -125,6 +150,25 @@ class ReportDetailsFragment : Fragment() {
             reportImageView.setImageResource(R.drawable.placeholder_image)
         }
 
+=======
+        // UPDATED: Setup images RecyclerView using your ImagesAdapter to show all submitted images
+        if (!report.imageUrls.isNullOrEmpty()) {
+            val imagesAdapter = ImagesAdapter(
+                imageUrls = report.imageUrls.toMutableList(),
+                maxImages = report.imageUrls.size, // Read-only: no add/remove actions in details view
+                onAddClick = {}, // No action on add in view mode
+                onRemoveClick = {}, // No action on remove in view mode
+                showCloseButton = false // Hide the close button in the report details view
+            )
+            imagesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            imagesRecyclerView.adapter = imagesAdapter
+        } else {
+            // Optionally show a message if no images are available
+            Toast.makeText(context, "No images available", Toast.LENGTH_SHORT).show()
+        }
+
+        // Handle video display (existing code)
+>>>>>>> origin/Archival_Branch
         if (!report.videoUrl.isNullOrEmpty()) {
             videoView.setVideoURI(Uri.parse(report.videoUrl))
             videoView.start()
@@ -133,6 +177,12 @@ class ReportDetailsFragment : Fragment() {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/Archival_Branch
     private fun displayLocationOnMap(latitude: Double, longitude: Double) {
         val reportLocation = GeoPoint(latitude, longitude)
         mapView.controller.setZoom(15.0)

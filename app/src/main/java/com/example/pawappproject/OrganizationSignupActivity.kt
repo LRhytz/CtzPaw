@@ -7,20 +7,28 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pawappproject.databinding.ActivityOrganizationSignupBinding
 import com.google.firebase.auth.FirebaseAuth
+<<<<<<< HEAD
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+=======
+>>>>>>> origin/Archival_Branch
 
 class OrganizationSignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrganizationSignupBinding
+<<<<<<< HEAD
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
+=======
+    private lateinit var auth: FirebaseAuth
+>>>>>>> origin/Archival_Branch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOrganizationSignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+<<<<<<< HEAD
         firebaseAuth = FirebaseAuth.getInstance()
         // Change the reference path to "organizations"
         databaseReference = FirebaseDatabase.getInstance().getReference("organizations")
@@ -51,10 +59,41 @@ class OrganizationSignupActivity : AppCompatActivity() {
                     sendEmailVerification()
                 } else {
                     Toast.makeText(this, "Signup Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+=======
+        auth = FirebaseAuth.getInstance()
+
+        binding.organizationSignupButton.setOnClickListener {
+            val email = binding.organizationSignupEmailEditText.text.toString().trim()
+            val password = binding.organizationSignupPasswordEditText.text.toString().trim()
+
+            if (isValidEmail(email) && isValidPassword(password)) {
+                registerOrganization(email, password)
+            } else {
+                Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.loginRedirectOrg.setOnClickListener {
+            val intent = Intent(this, OrganizationLoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun registerOrganization(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Signup successful", Toast.LENGTH_SHORT).show()
+                    navigateToOrganizationLogin()
+                } else {
+                    handleSignupError(task.exception?.message)
+>>>>>>> origin/Archival_Branch
                 }
             }
     }
 
+<<<<<<< HEAD
     private fun validateInputs(
         orgName: String, email: String, phone: String, address: String, bio: String,
         foundingYear: String, adminName: String, adminEmail: String, password: String,
@@ -92,10 +131,23 @@ class OrganizationSignupActivity : AppCompatActivity() {
                 saveOrganizationData()
             } else {
                 Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_LONG).show()
+=======
+    private fun handleSignupError(errorMessage: String?) {
+        when {
+            errorMessage?.contains("email address is already in use") == true -> {
+                Toast.makeText(this, "This email is already registered. Please log in instead.", Toast.LENGTH_SHORT).show()
+            }
+            errorMessage?.contains("Recaptcha") == true -> {
+                Toast.makeText(this, "Suspicious sign-up activity detected. Please try again later.", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(this, "Signup failed: $errorMessage", Toast.LENGTH_SHORT).show()
+>>>>>>> origin/Archival_Branch
             }
         }
     }
 
+<<<<<<< HEAD
     private fun saveOrganizationData() {
         val userId = firebaseAuth.currentUser?.uid ?: return
         val organizationMap = mapOf(
@@ -123,5 +175,19 @@ class OrganizationSignupActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Failed to save organization data: ${e.message}", Toast.LENGTH_LONG).show()
             }
+=======
+    private fun navigateToOrganizationLogin() {
+        val intent = Intent(this, OrganizationLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        return password.isNotEmpty() && password.length >= 6
+>>>>>>> origin/Archival_Branch
     }
 }

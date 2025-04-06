@@ -18,7 +18,12 @@ class DashboardActivity : AppCompatActivity() {
         // Load CitizenHomeFragment as the initial fragment
         makeCurrentFragment(CitizenHomeFragment())
 
+<<<<<<< HEAD
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.Ctz_bottom_navigation)
+=======
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+>>>>>>> origin/Archival_Branch
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.homeBtn -> makeCurrentFragment(CitizenHomeFragment())
