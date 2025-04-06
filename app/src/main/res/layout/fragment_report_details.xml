@@ -67,14 +67,14 @@
             android:textSize="16sp"
             android:paddingBottom="12dp" />
 
-        <ImageView
-            android:id="@+id/reportImageView"
+        <!-- UPDATED: Horizontal RecyclerView for report images -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/imagesRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:src="@drawable/placeholder_image"
-            android:layout_marginBottom="12dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
 
         <VideoView
             android:id="@+id/videoView"

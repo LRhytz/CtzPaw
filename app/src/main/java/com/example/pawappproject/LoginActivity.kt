@@ -51,6 +51,9 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
                     if (user != null && user.isEmailVerified) {
+                        // Store the email in SharedPreferences
+                        sharedPreferences.edit().putString("userEmail", email).apply()
+
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, DashboardActivity::class.java))
                         finish()
