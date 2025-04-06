@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/org_donations_border"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewOrganizationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Sample Organization Name" />
+
+    <TextView
+        android:id="@+id/textViewPurpose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Purpose/Details: Sample purpose or details for the donation" />
+
+    <TextView
+        android:id="@+id/textViewGcashName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="GCash Name: ***" />
+
+    <TextView
+        android:id="@+id/textViewGcashNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="GCash Number: 09123456789" />
+
+</LinearLayout>

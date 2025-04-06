@@ -1,0 +1,44 @@
+<!-- res/layout/activity_org_educ_and_awareness.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:background="@color/org_lightGreen">
+
+    <!-- Search bar for filtering articles -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Search articles"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp" />
+
+    <!-- RecyclerView for displaying articles, positioned below the search bar -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orgRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/searchView"
+        android:layout_above="@id/addArticleButton"
+        android:layout_marginTop="8dp"
+        tools:listitem="@layout/org_list_item_awareness"/>
+
+    <!-- Floating Action Button for adding a new article, positioned at the bottom-right -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addArticleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/ctz_fuchsia"
+        android:contentDescription="Add Article"
+        android:src="@drawable/add"
+        android:tint="@color/white" />
+
+</RelativeLayout>

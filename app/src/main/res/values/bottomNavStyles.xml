@@ -1,0 +1,14 @@
+<!-- This is used to edit the appearance of the Bottom Navigation Bar-->
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/ctz_lightPink</item>
+    </style>
+
+    <style name="CustomBottomNavigationItem" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+</resources>

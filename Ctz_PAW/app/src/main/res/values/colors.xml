@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- PAW App base color themes -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="backgroundColor">#F0F1F0</color>
+    <color name="silver">#CFCFCF</color>
+    <color name="lightBrown">#CEB290</color>
+    <color name="mediumBrown">#B2935B</color>
+    <color name="red">#E94335</color>
+    <color name="brightRed">#FF0000</color>
+    <color name="lightGray">#E0E0E0</color>
+    <color name="buttonPressed">#C1CFA1</color>
+    <!-- Citizen color themes -->
+    <color name="ctz_fuchsia">#D0346C</color>
+    <color name="ctz_lightPink">#FCC0C5</color>
+    <color name="ctz_veryLightPink">#fef1f2</color>
+
+
+    <!-- Organization color themes -->
+    <color name="org_lightGreen">#D1E3B1</color>
+    <color name="org_darkGreen">#78BC6C</color>
+
+    <color name="dark_mode">#333333</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="dark_primary_color">#263238</color> <!-- Dark Blue Grey -->
+    <color name="dark_primary_dark_color">#000a12</color> <!-- Very Dark Blue -->
+    <color name="dark_accent_color">#FF4081</color> <!-- Pink -->
+
+    <!-- Light Theme Colors -->
+    <color name="light_primary_color">#03A9F4</color> <!-- Light Blue -->
+    <color name="light_primary_dark_color">#0288D1</color> <!-- Dark Blue -->
+    <color name="light_accent_color">#FF5252</color> <!-- Red -->
+
+    <!-- Dark Theme -->
+    <style name="DarkTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/dark_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_primary_dark_color</item>
+        <item name="colorAccent">@color/dark_accent_color</item>
+        <!-- Add other dark theme attributes here -->
+    </style>
+
+    <!-- Light Theme -->
+    <style name="LightTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/light_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_primary_dark_color</item>
+        <item name="colorAccent">@color/light_accent_color</item>
+        <!-- Add other light theme attributes here -->
+    </style>
+
+</resources>

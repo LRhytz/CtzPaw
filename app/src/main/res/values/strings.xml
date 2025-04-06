@@ -1,0 +1,133 @@
+<resources>
+    <string name="app_name">PAW App</string>
+    <string name="click_me">Get Started</string>
+    <string name="get_started">Get Started</string>
+    <string name="app_logo">App Logo</string>
+    <string name="app_description">PAW APP is your go-to tool for reporting animal incidents and promoting animal welfare. Quickly report incidents, track cases, and access valuable resources to help animals in need. Together, let\'s create a safer world for our furry friends.</string>
+
+    <string name="favorite_pet">Favorite Pet</string>
+    <string name="filter">Filter</string>
+
+    <string name="description_one">
+    Welcome to PAW App: Your Partner in Animal Welfare
+    </string>
+
+    <string name="description_two">
+    At PAW App, we are dedicated to making a difference in the lives of animals
+    by harnessing the power of technology to address the pressing issues of animal abuse and
+    neglect in the Philippines. Animal welfare is a significant concern, and despite the robust
+    legal framework provided by the Animal Welfare Act of the Philippines, practical enforcement and
+    public awareness remain ongoing challenges.
+    </string>
+
+    <string name="description_three">
+    Our innovative mobile application is designed to enhance the efficiency and
+    effectiveness of reporting animal abuse incidents, providing a seamless platform
+    for users to report, document, and follow up on cases of animal mistreatment.
+    By simplifying the reporting process, we aim to empower individuals and communities
+    to take an active role in protecting animals and ensuring their well-being.
+    </string>
+
+    <string name="description_four">
+    Join Us in Making a Difference
+    </string>
+
+    <string name="description_five">
+    We invite you to join us in our mission to protect and promote animal welfare.
+    Together, we can create a safer, more compassionate environment for animals in the Philippines.
+    Download PAW App today and be a part of the change.
+    </string>
+
+    <string name="articles_a">
+        “   SECTION 1. It is the purpose of this Act to protect and promote the welfare of all terrestrial, aquatic and marine animals in the Philippines by supervising and regulating the establishment and operations of all facilities utilized for breeding, maintaining, keeping,
+        treating or training of all animals either as objects of trade or as household pets.
+        For purposes of this Act, pet animal shall include birds.
+
+        “For purposes of this Act, animal welfare pertains to the physical and psychological well-being of animals.
+        It includes, but not limited to, the avoidance of abuse, maltreatment, cruelty and exploitation of animals by humans by maintaining appropriate standards of accommodation, feeding and general care, the prevention and treatment of disease and the assurance of freedom from fear,
+        distress, harassment, and unnecessary discomfort and pain, and allowing animals to express normal behavior.”
+
+        SEC. 2. Section 6 of Republic Act No. 8485 is hereby amended to read as follows:
+
+        “SEC. 6. It shall be unlawful for any person to torture any animal, to neglect to provide adequate care, sustenance of shelter, or maltreat any animal or to subject any dog or horse to dogfights or horse fights,
+        kill or cause or procure to be tortured or deprived of adequate care, sustenance or shelter, or maltreat or use the same in research or experiments not expressly authorized by the Committee on Animal Welfare.
+    </string>
+
+    <string name="articles_b">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_c">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_d">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_e">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_f">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_g">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_h">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_i">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+
+    <string name="articles_j">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, ipsum sit amet finibus mollis, purus lectus semper odio, nec laoreet turpis odio tempor neque. Fusce semper nec nibh id porttitor.
+        Aliquam malesuada, ipsum blandit consequat condimentum, libero elit consectetur erat, at luctus mi lorem id nisl. Mauris suscipit sollicitudin odio vitae pulvinar. Suspendisse a felis in mi laoreet vestibulum.
+        Aliquam vestibulum mattis orci, ut condimentum massa commodo non. Suspendisse semper, nisi nec feugiat dapibus, turpis erat pharetra massa, nec vulputate purus ex sit amet lorem. Aenean ornare feugiat neque.
+        Praesent ligula est, tincidunt id magna sit amet, placerat molestie mi. Morbi placerat, ante at dapibus euismod, lectus purus pellentesque ex, at pulvinar tortor ligula eget mi. Aliquam viverra felis ac tristique facilisis.
+        Mauris ornare tincidunt nisl. Cras molestie risus quis nisl aliquam congue.
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="choose">Choose</string>
+    <string name="notification_bell" />
+
+
+</resources>

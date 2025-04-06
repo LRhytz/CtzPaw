@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+        <!-- Define light mode attributes -->
+        <item name="colorPrimary">@color/ctz_lightPink</item>
+        <item name="colorPrimaryDark">@color/ctz_fuchsia</item>
+        <item name="colorAccent">@color/brightRed</item>
+        <!-- Other attributes for light mode -->
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <!-- Define dark mode attributes -->
+        <item name="colorPrimary">@color/org_darkGreen</item>
+        <item name="colorPrimaryDark">@color/dark_mode</item>
+        <item name="colorAccent">@color/red</item>
+        <!-- Other attributes for dark mode -->
+    </style>
+</resources>

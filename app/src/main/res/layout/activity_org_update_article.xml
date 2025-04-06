@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/updateArticleTitleInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Article Title" />
+
+    <EditText
+        android:id="@+id/updateArticleContentInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Article Content"
+        android:inputType="textMultiLine"
+        android:lines="5" />
+
+    <EditText
+        android:id="@+id/updateArticleCategoryInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Article Category" />
+
+    <EditText
+        android:id="@+id/updateArticleImageUrlInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Article Image URL" />
+
+    <Button
+        android:id="@+id/updateArticleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Article" />
+</LinearLayout>
