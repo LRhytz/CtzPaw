@@ -41,10 +41,7 @@ android {
 dependencies {
 
     implementation ("androidx.recyclerview:recyclerview:1.3.1")
-<<<<<<< HEAD
     implementation ("com.squareup.picasso:picasso:2.71828")
-=======
->>>>>>> origin/Archival_Branch
     implementation ("androidx.viewpager2:viewpager2:1.1.0-beta02")
     implementation ("com.google.android.material:material:1.9.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
@@ -70,18 +67,12 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.6.3")
     implementation("androidx.compose.material:material:1.6.3")
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.3")
-<<<<<<< HEAD
     implementation("org.osmdroid:osmdroid-android:6.1.11")
-=======
     implementation("org.osmdroid:osmdroid-android:6.1.12")
->>>>>>> origin/Archival_Branch
     implementation("com.google.android.gms:play-services-location:21.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-<<<<<<< HEAD
-=======
     implementation("com.github.MKergall:osmbonuspack:6.8.0") // UPDATED: Use v6.8.0
->>>>>>> origin/Archival_Branch
 
 }

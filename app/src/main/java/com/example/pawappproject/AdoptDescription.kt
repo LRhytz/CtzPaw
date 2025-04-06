@@ -1,6 +1,5 @@
 package com.example.pawappproject
 
-<<<<<<< HEAD
 data class AdoptDescription(
     val id: String = "",
     val imageUrl: String = "",
@@ -32,21 +31,3 @@ data class AdoptDescription(
     // Add this method if you want to filter by location in the list
     fun getLocation(): String = contactLocation
 }
-=======
-data class AdoptDescription (
-    val imageResourceId: Int,
-    val name: String,
-    val genderResourceId: Int,
-    val gender: String,
-    val calendarResourceID: Int,
-    val age: String,
-    val pawResourceId: Int,
-    val breed: String,
-    val description: String,
-    val orgResourceId: Int,
-    val organization: String,
-    val locationResourceId: Int,
-    val address: String,
-    val fullDescription: String,
-)
->>>>>>> origin/Archival_Branch

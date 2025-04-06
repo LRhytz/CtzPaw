@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.example.pawappproject.Donation
 >>>>>>> origin/Archival_Branch
 
+
 class DonationAdapter(
     context: Context,
     resource: Int,

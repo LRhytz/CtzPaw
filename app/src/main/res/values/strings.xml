@@ -5,12 +5,9 @@
     <string name="app_logo">App Logo</string>
     <string name="app_description">PAW APP is your go-to tool for reporting animal incidents and promoting animal welfare. Quickly report incidents, track cases, and access valuable resources to help animals in need. Together, let\'s create a safer world for our furry friends.</string>
 
-<<<<<<< HEAD
     <string name="favorite_pet">Favorite Pet</string>
     <string name="filter">Filter</string>
 
-=======
->>>>>>> origin/Archival_Branch
     <string name="description_one">
     Welcome to PAW App: Your Partner in Animal Welfare
     </string>

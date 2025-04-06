@@ -7,10 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pawappproject.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-<<<<<<< HEAD
 import com.google.firebase.database.FirebaseDatabase
-=======
->>>>>>> origin/Archival_Branch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -55,7 +52,6 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
                     if (user != null && user.isEmailVerified) {
-<<<<<<< HEAD
                         val uid = user.uid
                         // Read the citizen record from the "users" node
                         val dbRef = FirebaseDatabase.getInstance().getReference("users").child(uid)
@@ -86,17 +82,6 @@ class LoginActivity : AppCompatActivity() {
                             "Please verify your email before logging in.",
                             Toast.LENGTH_LONG
                         ).show()
-=======
-                        // Store the email in SharedPreferences
-                        sharedPreferences.edit().putString("userEmail", email).apply()
-
-                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, DashboardActivity::class.java))
-                        finish()
-                    } else {
-                        firebaseAuth.signOut()
-                        Toast.makeText(this, "Please verify your email before logging in.", Toast.LENGTH_LONG).show()
->>>>>>> origin/Archival_Branch
                     }
                 } else {
                     Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()

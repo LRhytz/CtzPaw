@@ -34,12 +34,6 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Function to open DatePickerDialog when Date of Birth field is clicked
-     */
->>>>>>> origin/Archival_Branch
     private fun setupDateOfBirthPicker() {
         val dobTextView: TextView = binding.SignDob
         val calendar = Calendar.getInstance()
@@ -50,10 +44,6 @@ class SignupActivity : AppCompatActivity() {
                 { _, year, month, dayOfMonth ->
                     val selectedDate = Calendar.getInstance()
                     selectedDate.set(year, month, dayOfMonth)
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Archival_Branch
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                     dobTextView.text = dateFormat.format(selectedDate.time)
                 },
@@ -61,21 +51,11 @@ class SignupActivity : AppCompatActivity() {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
             )
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Archival_Branch
             datePicker.datePicker.maxDate = System.currentTimeMillis()
             datePicker.show()
         }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Register user with email verification
-     */
->>>>>>> origin/Archival_Branch
     private fun registerUserWithEmail() {
         val firstName = binding.SignFirstName.text.toString().trim()
         val lastName = binding.SignLastName.text.toString().trim()
@@ -86,12 +66,8 @@ class SignupActivity : AppCompatActivity() {
         val confirmPassword = binding.SignConfirmPassword.text.toString().trim()
         val birthdate = binding.SignDob.text.toString().trim()
 
-<<<<<<< HEAD
         if (!validateInputs(firstName, lastName, username, email, phone, password, confirmPassword, birthdate))
             return
-=======
-        if (!validateInputs(firstName, lastName, username, email, phone, password, confirmPassword, birthdate)) return
->>>>>>> origin/Archival_Branch
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -103,12 +79,6 @@ class SignupActivity : AppCompatActivity() {
             }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Validate input fields
-     */
->>>>>>> origin/Archival_Branch
     private fun validateInputs(
         firstName: String, lastName: String, username: String, email: String,
         phone: String, password: String, confirmPassword: String, birthdate: String
@@ -119,54 +89,28 @@ class SignupActivity : AppCompatActivity() {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return false
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Archival_Branch
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
             return false
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Archival_Branch
         if (password.length < 6) {
             Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
             return false
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Archival_Branch
         if (password != confirmPassword) {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
             return false
         }
-<<<<<<< HEAD
         return true
     }
 
-=======
-
-        return true
-    }
-
-    /**
-     * Send email verification link
-     */
->>>>>>> origin/Archival_Branch
     private fun sendEmailVerification() {
         val user = firebaseAuth.currentUser
 
         user?.sendEmailVerification()?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this, "Verification email sent. Check your inbox.", Toast.LENGTH_LONG).show()
-<<<<<<< HEAD
                 registerUser() // Save user data after verification email is sent
-=======
-                registerUser()
->>>>>>> origin/Archival_Branch
                 firebaseAuth.signOut() // Force user to verify before logging in
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
@@ -176,12 +120,6 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Save user data to Firebase Database
-     */
->>>>>>> origin/Archival_Branch
     private fun registerUser() {
         val userId = firebaseAuth.currentUser?.uid ?: return
         val userMap = mapOf(
@@ -192,12 +130,8 @@ class SignupActivity : AppCompatActivity() {
             "phone" to binding.SignPhoneNumber.text.toString().trim(),
             "birthdate" to binding.SignDob.text.toString().trim(),
             "profileImage" to "default",
-<<<<<<< HEAD
             "bio" to "New user",
             "userType" to "Citizen"
-=======
-            "bio" to "New user"
->>>>>>> origin/Archival_Branch
         )
 
         databaseReference.child(userId).setValue(userMap)

@@ -11,25 +11,16 @@
     <color name="red">#E94335</color>
     <color name="brightRed">#FF0000</color>
     <color name="lightGray">#E0E0E0</color>
-<<<<<<< HEAD
     <color name="buttonPressed">#C1CFA1</color>
-=======
 
->>>>>>> origin/Archival_Branch
     <!-- Citizen color themes -->
     <color name="ctz_fuchsia">#D0346C</color>
     <color name="ctz_lightPink">#FCC0C5</color>
     <color name="ctz_veryLightPink">#fef1f2</color>
-<<<<<<< HEAD
     <color name="bookmarkYellow">#F6F193</color>
 
     <!-- Organization color themes -->
     <color name="org_veryLightGreen">#f1f6e8</color>
-=======
-
-
-    <!-- Organization color themes -->
->>>>>>> origin/Archival_Branch
     <color name="org_lightGreen">#D1E3B1</color>
     <color name="org_darkGreen">#78BC6C</color>
 
