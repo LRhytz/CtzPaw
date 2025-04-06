@@ -15,6 +15,10 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.LayoutInflater
+<<<<<<< HEAD
+import android.view.MotionEvent
+=======
+>>>>>>> origin/Archival_Branch
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -24,12 +28,18 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+<<<<<<< HEAD
+import com.example.pawappproject.R
+import com.example.pawappproject.Report
+import com.example.pawappproject.ReportingUtils
+=======
 import androidx.recyclerview.widget.LinearLayoutManager           // UPDATED: For RecyclerView layout manager
 import androidx.recyclerview.widget.RecyclerView                  // UPDATED: For RecyclerView
 import com.example.pawappproject.R
 import com.example.pawappproject.Report
 import com.example.pawappproject.ReportingUtils
 import com.example.pawappproject.ImagesAdapter                   // UPDATED: Using revised ImagesAdapter
+>>>>>>> origin/Archival_Branch
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -41,6 +51,11 @@ import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+<<<<<<< HEAD
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+=======
 import org.osmdroid.bonuspack.location.GeocoderNominatim
 import java.io.File
 import java.io.IOException
@@ -48,6 +63,7 @@ import java.text.SimpleDateFormat
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+>>>>>>> origin/Archival_Branch
 import java.util.*
 
 class CitizenReportingFragment : Fragment() {
@@ -57,17 +73,29 @@ class CitizenReportingFragment : Fragment() {
     private lateinit var reportDescription: EditText
     private lateinit var submitButton: Button
     private lateinit var viewReportHistoryButton: ImageButton
+<<<<<<< HEAD
+    private lateinit var addMediasContainers: LinearLayout
+    private lateinit var imageViews: List<ImageView>
+    private lateinit var mapView: MapView
+
+    private lateinit var videoPreview: VideoView
+    private lateinit var selectVideoButton: Button
+=======
     private lateinit var imageRecyclerView: RecyclerView
     private lateinit var mapView: MapView
 
     private lateinit var videoPreview: VideoView
     private lateinit var selectVideoButton: ImageButton
+>>>>>>> origin/Archival_Branch
     private var selectedVideoUri: Uri? = null
     private val MAX_VIDEO_SIZE_MB = 30
     private val MIN_DURATION_SECONDS = 3
     private val MAX_DURATION_SECONDS = 60
+<<<<<<< HEAD
+=======
     private lateinit var videoFrame: FrameLayout
     private lateinit var removeVideoButton: ImageButton
+>>>>>>> origin/Archival_Branch
 
     // Location
     private var selectedLocation: GeoPoint? = null
@@ -77,10 +105,13 @@ class CitizenReportingFragment : Fragment() {
     private val imageUris = mutableListOf<Uri>()
     private var photoUri: Uri? = null
 
+<<<<<<< HEAD
+=======
     // UPDATED: For thumbnail and "Play" button
     private lateinit var videoThumbnail: ImageView
     private lateinit var playButton: ImageButton
 
+>>>>>>> origin/Archival_Branch
     // Activity Result Launchers
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
@@ -92,6 +123,8 @@ class CitizenReportingFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var sharedPreferences: SharedPreferences
 
+<<<<<<< HEAD
+=======
     // NEW: Adapter for RecyclerView & max images count
     private lateinit var imagesAdapter: ImagesAdapter
     private val MAX_IMAGES = 5
@@ -101,6 +134,7 @@ class CitizenReportingFragment : Fragment() {
 
     private val NOTIFICATION_PERMISSION_REQUEST_CODE = 1010
 
+>>>>>>> origin/Archival_Branch
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -133,8 +167,13 @@ class CitizenReportingFragment : Fragment() {
         requestAppropriatePermissions()
 
         // Initialize Firebase
+<<<<<<< HEAD
+        database = FirebaseDatabase.getInstance().reference.child("reports")
+        storage = FirebaseStorage.getInstance().reference
+=======
         database = FirebaseDatabase.getInstance().getReference("reports")
         storage = FirebaseStorage.getInstance().getReference()
+>>>>>>> origin/Archival_Branch
         firebaseAuth = FirebaseAuth.getInstance()
         sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
 
@@ -153,6 +192,31 @@ class CitizenReportingFragment : Fragment() {
         reportDescription = view.findViewById(R.id.reportDescription)
         submitButton = view.findViewById(R.id.submitButton)
         viewReportHistoryButton = view.findViewById(R.id.viewReportHistoryButton)
+<<<<<<< HEAD
+        addMediasContainers = view.findViewById(R.id.addMediasContainers)
+        mapView = view.findViewById(R.id.mapView)
+
+        // Initialize AutoCompleteTextView
+        ReportingUtils.initAutoCompleteTextView(requireContext(), autoCompleteTextView)
+
+        // Initialize ImageViews and set click listeners
+        imageViews = List(MAX_IMAGES) { index ->
+            val imageView = addMediasContainers.getChildAt(index) as ImageView
+            imageView.setOnClickListener {
+                currentImageView = imageView
+                showImagePickerDialog()
+            }
+            imageView
+        }
+
+        // Initialize video views
+        videoPreview = view.findViewById(R.id.videoPreview)
+        selectVideoButton = view.findViewById(R.id.selectVideoButton)
+
+        // Handle video selection
+        selectVideoButton.setOnClickListener {
+            pickVideo()
+=======
         imageRecyclerView = view.findViewById(R.id.imageRecyclerView)
         mapView = view.findViewById(R.id.mapView)
 
@@ -232,6 +296,7 @@ class CitizenReportingFragment : Fragment() {
         // UPDATED: Let user choose to record or pick a video
         selectVideoButton.setOnClickListener {
             showVideoPickerOptions() // UPDATED
+>>>>>>> origin/Archival_Branch
         }
 
         // Set up map
@@ -246,6 +311,12 @@ class CitizenReportingFragment : Fragment() {
             onViewReportsButtonClick()
         }
 
+<<<<<<< HEAD
+        return view
+    }
+
+    // Pick video from gallery or record a new one
+=======
         openLargeMapButton.setOnClickListener {
             showLargeMapDialog() // Open the larger map dialog
         }
@@ -300,17 +371,27 @@ class CitizenReportingFragment : Fragment() {
     }
 
     // Pick video from gallery
+>>>>>>> origin/Archival_Branch
     private fun pickVideo() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
         videoPickerLauncher.launch(intent)
     }
 
+<<<<<<< HEAD
+=======
     // We still have onActivityResult for older logic
+>>>>>>> origin/Archival_Branch
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_VIDEO_PICKER -> {
+<<<<<<< HEAD
+                    selectedVideoUri = data?.data
+                    selectedVideoUri?.let { uri ->
+                        videoPreview.setVideoURI(uri) // Set the video URI to the VideoView
+                        videoPreview.start() // Start playing the video
+=======
                     val videoUri = data?.data
                     if (videoUri != null && validateVideo(videoUri)) {
                         // UPDATED: Set the URI and show thumbnail
@@ -328,6 +409,7 @@ class CitizenReportingFragment : Fragment() {
                         showVideoThumbnail(recordedVideoUri)  // <-- same idea here
                     } else {
                         Toast.makeText(requireContext(), "Invalid recorded video", Toast.LENGTH_SHORT).show()
+>>>>>>> origin/Archival_Branch
                     }
                 }
             }
@@ -341,15 +423,22 @@ class CitizenReportingFragment : Fragment() {
                 val videoUri = result.data?.data
                 if (videoUri != null && validateVideo(videoUri)) {
                     selectedVideoUri = videoUri
+<<<<<<< HEAD
+                    videoPreview.setVideoURI(videoUri)
+                    videoPreview.start()
+=======
                     // Instead of directly calling videoPreview.setVideoURI(...)
                     // show the thumbnail first
                     showVideoThumbnail(videoUri)
+>>>>>>> origin/Archival_Branch
                 } else {
                     Toast.makeText(requireContext(), "Invalid video selected", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
+<<<<<<< HEAD
+=======
 
     // UPDATED: Helper function to create and display a thumbnail
     private fun showVideoThumbnail(videoUri: Uri) {
@@ -393,6 +482,7 @@ class CitizenReportingFragment : Fragment() {
         }
     }
 
+>>>>>>> origin/Archival_Branch
     // Validate video constraints
     private fun validateVideo(videoUri: Uri): Boolean {
         val retriever = MediaMetadataRetriever()
@@ -421,9 +511,14 @@ class CitizenReportingFragment : Fragment() {
                 Toast.makeText(requireContext(), "Video size exceeds 30MB", Toast.LENGTH_SHORT).show()
                 false
             }
+<<<<<<< HEAD
+            durationSeconds < MIN_DURATION_SECONDS || durationSeconds > MAX_DURATION_SECONDS -> {
+                Toast.makeText(requireContext(), "Video duration must be between 10-60 seconds", Toast.LENGTH_SHORT).show()
+=======
             // UPDATED: Consistent error message with MIN_DURATION_SECONDS
             durationSeconds < MIN_DURATION_SECONDS || durationSeconds > MAX_DURATION_SECONDS -> {
                 Toast.makeText(requireContext(), "Video duration must be between $MIN_DURATION_SECONDS-$MAX_DURATION_SECONDS seconds", Toast.LENGTH_SHORT).show() // UPDATED
+>>>>>>> origin/Archival_Branch
                 false
             }
             videoWidth > 1280 || videoHeight > 1280 -> {
@@ -434,6 +529,49 @@ class CitizenReportingFragment : Fragment() {
         }
     }
 
+<<<<<<< HEAD
+    // Setup Maps
+    private fun setupMap() {
+        mapView.setMultiTouchControls(true)
+        val startPoint = GeoPoint(14.5995, 120.9842) // Example starting location (Manila)
+        mapView.controller.setZoom(15.0)
+        mapView.controller.setCenter(startPoint)
+
+        // Add a draggable marker to represent the user’s location
+        val marker = Marker(mapView)
+        marker.position = startPoint
+        marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_location_pin)
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker.isDraggable = true
+        mapView.overlays.add(marker)
+
+        // Handle touch events directly on the map
+        mapView.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    // Disable parent scroll when touching the map
+                    mapView.parent.requestDisallowInterceptTouchEvent(true)
+                }
+                MotionEvent.ACTION_UP -> {
+                    // Re-enable parent scroll when releasing touch
+                    mapView.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            mapView.onTouchEvent(event) // Let map handle the touch event
+        }
+
+        // Optional: Marker drag listener to update location when dragged
+        marker.setOnMarkerDragListener(object : Marker.OnMarkerDragListener {
+            override fun onMarkerDrag(marker: Marker?) {}
+
+            override fun onMarkerDragEnd(marker: Marker?) {
+                selectedLocation = marker?.position
+                Toast.makeText(requireContext(), "Location selected: ${selectedLocation?.latitude}, ${selectedLocation?.longitude}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onMarkerDragStart(marker: Marker?) {}
+        })
+=======
     // UPDATED: Setup Maps with immediate retrieval of user's current location using location updates
     private fun setupMap() {
         mapView.setMultiTouchControls(true)
@@ -499,19 +637,32 @@ class CitizenReportingFragment : Fragment() {
                 override fun onMarkerDragStart(marker: Marker?) {}
             })
         }
+>>>>>>> origin/Archival_Branch
     }
 
 
     private fun getCurrentLocation(callback: (Location) -> Unit) {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+<<<<<<< HEAD
+            // If permission is granted, get the last known location
+=======
+>>>>>>> origin/Archival_Branch
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     callback(location)
                 } else {
+<<<<<<< HEAD
+                    // Handle the case where location is null (e.g., GPS is off or no recent location)
+=======
+>>>>>>> origin/Archival_Branch
                     Toast.makeText(requireContext(), "Unable to get current location", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
+<<<<<<< HEAD
+            // Request location permission
+=======
+>>>>>>> origin/Archival_Branch
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -520,6 +671,8 @@ class CitizenReportingFragment : Fragment() {
         }
     }
 
+<<<<<<< HEAD
+=======
     // UPDATED: Request current location using location updates
     private fun requestCurrentLocation(callback: (Location) -> Unit) {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -660,14 +813,20 @@ class CitizenReportingFragment : Fragment() {
     }
 
     // Show a dialog for picking an image from camera or gallery
+>>>>>>> origin/Archival_Branch
     private fun showImagePickerDialog() {
         val options = arrayOf("Take Photo", "Choose from Gallery")
         val builder = android.app.AlertDialog.Builder(requireContext())
         builder.setTitle("Add Image")
         builder.setItems(options) { _, which ->
             when (which) {
+<<<<<<< HEAD
+                0 -> openCamera() // Open camera option
+                1 -> pickImageFromGallery() // Choose from gallery option
+=======
                 0 -> openCamera()
                 1 -> pickImageFromGallery()
+>>>>>>> origin/Archival_Branch
             }
         }
         builder.show()
@@ -712,14 +871,33 @@ class CitizenReportingFragment : Fragment() {
 
     private fun hasReadPermission(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+<<<<<<< HEAD
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+=======
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED
         } else {
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+>>>>>>> origin/Archival_Branch
         }
     }
 
     private fun hasCameraPermission(): Boolean {
+<<<<<<< HEAD
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+=======
         return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+>>>>>>> origin/Archival_Branch
     }
 
     private fun requestAppropriatePermissions() {
@@ -775,22 +953,54 @@ class CitizenReportingFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+<<<<<<< HEAD
+                // Permission was granted, retry getting the current location
+                getCurrentLocation { location ->
+                    selectedLocation = GeoPoint(location.latitude, location.longitude)
+                    // Update the map and marker position
+                    mapView.controller.setCenter(selectedLocation)
+                    // Move the marker to the new location (if you added one)
+                }
+            } else {
+                // Permission was denied, show a message or handle accordingly
+=======
                 getCurrentLocation { location ->
                     selectedLocation = GeoPoint(location.latitude, location.longitude)
                     mapView.controller.setCenter(selectedLocation)
                 }
             } else {
+>>>>>>> origin/Archival_Branch
                 Toast.makeText(requireContext(), "Location permission required to select location", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+<<<<<<< HEAD
+    private fun addImageUri(uri: Uri) {
+        if (imageUris.size < MAX_IMAGES) {
+            imageUris.add(uri)
+            currentImageView?.setImageURI(uri)
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "You can add up to $MAX_IMAGES images",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+=======
+>>>>>>> origin/Archival_Branch
     private fun saveImageToGallery(uri: Uri) {
         val contentValues = ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME, "IMG_${System.currentTimeMillis()}.jpg")
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
             put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/Archival_Branch
         val resolver = requireContext().contentResolver
         resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)?.let { galleryUri ->
             resolver.openOutputStream(galleryUri)?.use { outputStream ->
@@ -801,6 +1011,12 @@ class CitizenReportingFragment : Fragment() {
         }
     }
 
+<<<<<<< HEAD
+    private fun onSubmitButtonClick() {
+        val reportType = autoCompleteTextView.text.toString()
+        val description = reportDescription.text.toString()
+        val user = firebaseAuth.currentUser
+=======
     // Declare this flag at the class level
     private var isSubmitting = false
 
@@ -811,6 +1027,7 @@ class CitizenReportingFragment : Fragment() {
 
         val reportType = autoCompleteTextView.text.toString()
         val description = reportDescription.text.toString()
+>>>>>>> origin/Archival_Branch
         val userEmail = sharedPreferences.getString("userEmail", null)
 
         if (reportType.isEmpty() || description.isEmpty() || imageUris.isEmpty() || userEmail == null || selectedLocation == null) {
@@ -819,11 +1036,18 @@ class CitizenReportingFragment : Fragment() {
                 "Please complete all fields, add at least one image, and ensure you are logged in and location selected",
                 Toast.LENGTH_SHORT
             ).show()
+<<<<<<< HEAD
+            return
+        }
+
+
+=======
             isSubmitting = false
             submitButton.isEnabled = true
             return
         }
 
+>>>>>>> origin/Archival_Branch
         // Generate a custom ID for the report
         val reportTimestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val reportId = "report_$reportTimestamp"
@@ -847,6 +1071,23 @@ class CitizenReportingFragment : Fragment() {
                             latitude = selectedLocation?.latitude,
                             longitude = selectedLocation?.longitude
                         )
+<<<<<<< HEAD
+
+                        // Check if there's a video to upload
+                        if (selectedVideoUri != null) {
+                            val videoRef = storage.child("reports").child(reportId).child("report_video.mp4")
+                            videoRef.putFile(selectedVideoUri!!).addOnSuccessListener {
+                                videoRef.downloadUrl.addOnSuccessListener { videoUrl ->
+                                    // Add video URL to the report and save it to the database
+                                    report.videoUrl = videoUrl.toString()
+                                    saveReportToDatabase(report)
+                                }
+                            }.addOnFailureListener {
+                                Toast.makeText(requireContext(), "Failed to upload video", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            // No video, save the report directly
+=======
                         if (selectedVideoUri != null) {
                             val videoRef = storage.child("reports").child(reportId).child("report_video.mp4")
 
@@ -872,12 +1113,15 @@ class CitizenReportingFragment : Fragment() {
                                     submitButton.isEnabled = true
                                 }
                         } else {
+>>>>>>> origin/Archival_Branch
                             saveReportToDatabase(report)
                         }
                     }
                 }
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to upload image", Toast.LENGTH_SHORT).show()
+<<<<<<< HEAD
+=======
                 isSubmitting = false
                 submitButton.isEnabled = true
             }
@@ -921,14 +1165,32 @@ class CitizenReportingFragment : Fragment() {
                     arrayOf(Manifest.permission.POST_NOTIFICATIONS),
                     NOTIFICATION_PERMISSION_REQUEST_CODE
                 )
+>>>>>>> origin/Archival_Branch
             }
         }
     }
 
+<<<<<<< HEAD
+    // Function to save the report to the Firebase Realtime Database
+=======
+>>>>>>> origin/Archival_Branch
     private fun saveReportToDatabase(report: Report) {
         database.child(report.reportId).setValue(report).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(requireContext(), "Report submitted successfully", Toast.LENGTH_SHORT).show()
+<<<<<<< HEAD
+                // Clear fields
+                autoCompleteTextView.text.clear()
+                reportDescription.text.clear()
+                imageUris.clear()
+                imageViews.forEach { imageView -> imageView.setImageURI(null) }
+            } else {
+                Toast.makeText(requireContext(), "Failed to submit report", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+=======
                 // Trigger the notification here
                 showReportNotification(requireContext())
                 autoCompleteTextView.text.clear()
@@ -944,6 +1206,7 @@ class CitizenReportingFragment : Fragment() {
     }
 
 
+>>>>>>> origin/Archival_Branch
     private fun onViewReportsButtonClick() {
         val fragment = ViewReportsFragment()
         parentFragmentManager.beginTransaction()
@@ -952,6 +1215,8 @@ class CitizenReportingFragment : Fragment() {
             .commit()
     }
 
+<<<<<<< HEAD
+=======
     // UPDATED: (Optional) Let user remove a selected video if you add a "removeVideoButton" in layout
     /*
     private lateinit var removeVideoButton: Button // UPDATED
@@ -983,13 +1248,21 @@ class CitizenReportingFragment : Fragment() {
         }
     }
 
+>>>>>>> origin/Archival_Branch
     companion object {
         private const val REQUEST_VIDEO_PICKER = 1001
         private const val REQUEST_READ_STORAGE_PERMISSION = 1
         private const val REQUEST_CAMERA_PERMISSION = 2
+<<<<<<< HEAD
+        private const val MAX_IMAGES = 5
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 100
+    }
+}
+=======
         private const val LOCATION_PERMISSION_REQUEST_CODE = 100
 
         // UPDATED: Add request code for recording video
         private const val REQUEST_VIDEO_CAPTURE = 2001 // UPDATED
     }
 }
+>>>>>>> origin/Archival_Branch

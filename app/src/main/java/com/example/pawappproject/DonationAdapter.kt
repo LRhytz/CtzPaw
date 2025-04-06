@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+<<<<<<< HEAD
+=======
 import com.example.pawappproject.Donation
+>>>>>>> origin/Archival_Branch
 
 
 class DonationAdapter(

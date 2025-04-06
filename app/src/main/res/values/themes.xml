@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<<<<<<< HEAD
+    <style name="Base.Theme.PawAppProject" parent="Theme.Material3.DayNight.NoActionBar">
+=======
     <style name="Base.Theme.PawAppProject" parent="Theme.Material3.Light.NoActionBar">
+>>>>>>> origin/Archival_Branch
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
@@ -15,5 +19,11 @@
     <style name="nightModeSwitch" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/ctz_lightPink</item>
         <item name="colorSwitchThumbNormal">#FFFFFF</item>
+<<<<<<< HEAD
+
     </style>
 </resources>
+=======
+    </style>
+</resources>
+>>>>>>> origin/Archival_Branch

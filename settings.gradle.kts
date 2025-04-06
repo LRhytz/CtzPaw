@@ -10,7 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+<<<<<<< HEAD
+=======
         maven("https://jitpack.io")
+>>>>>>> origin/Archival_Branch
     }
 }
 
